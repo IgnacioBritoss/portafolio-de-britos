@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sistema Ferroviario Argentino — Historia & Datos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- FONDO ANIMADO -->
+  <div class="bg">
+    <div class="bg-sun"></div>
+    <div class="bg-cloud cloud-1"></div>
+    <div class="bg-cloud cloud-2"></div>
+    <div class="bg-cloud cloud-3"></div>
+    <div class="bg-track"></div>
+    <div class="bg-train" aria-hidden="true">
+      <div class="loco"></div>
+      <div class="car"></div>
+      <div class="car"></div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <header class="nav">
+    <a href="#" class="brand">🚆 Ferrocarriles Argentinos</a>
+    <nav>
+      <a href="#intro">Inicio</a>
+      <a href="#historia">Historia</a>
+      <a href="#alcance">Alcance</a>
+      <a href="#aportes">Aportes</a>
+      <a href="#curiosidades">Curiosidades</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#fuentes">Fuentes</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="intro" class="section hero">
+    <div class="hero-card reveal">
+      <h1>Sistema Ferroviario de Argentina</h1>
+      <p>
+        De <strong>La Porteña (1857)</strong> a la nacionalización de <strong>1948</strong>, 
+        los ciclos de expansión, cierres y reactivaciones: historia, protagonistas, datos curiosos e hitos
+        de una red que conectó puertos, ciudades y economías regionales.
+      </p>
+      <div class="actions">
+        <a class="btn" href="#historia">Ver línea de tiempo</a>
+        <button class="btn ghost" id="btn-sonido" aria-label="Sonido de tren">🎵 Sonido</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORIA / LÍNEA DE TIEMPO -->
+  <section id="historia" class="section">
+    <div class="section-head">
+      <h2>Historia y línea de tiempo</h2>
+      <div class="filters">
+        <input id="buscador" type="search" placeholder="Filtrar por año, persona o evento…" />
+        <select id="filtro-epoca" aria-label="Filtrar por época">
+          <option value="todas">Todas las épocas</option>
+          <option value="origenes">Orígenes (1850–1880)</option>
+          <option value="expansion">Expansión (1880–1916)</option>
+          <option value="consolidacion">Consolidación (1916–1948)</option>
+          <option value="nacionalizacion">Nacionalización (desde 1948)</option>
+          <option value="privatizaciones">Reformas & privatizaciones (1990s)</option>
+          <option value="siglo21">Siglo XXI</option>
+        </select>
+      </div>
+    </div>
+
+    <ol id="timeline" class="timeline"></ol>
+  </section>
+
+  <!-- ALCANCE / REDES -->
+  <section id="alcance" class="section">
+    <div class="section-head">
+      <h2>Alcance de la red y líneas</h2>
+      <p class="muted">Puntos de origen/destino emblemáticos y líneas históricas.</p>
+    </div>
+    <div class="grid reach-grid">
+      <article class="card reveal">
+        <h3>Extensión (pico histórico)</h3>
+        <p><strong>~47.000–48.000 km</strong> (mediados del siglo XX). La red llegó a abarcar buena parte del territorio, integrando economías regionales con puertos como <em>Buenos Aires</em>, <em>Rosario</em> y <em>Bahía Blanca</em>.</p>
+      </article>
+      <article class="card reveal">
+        <h3>Líneas Nacionalizadas (1948)</h3>
+        <ul class="chips">
+          <li>Mitre</li>
+          <li>Sarmiento</li>
+          <li>Roca</li>
+          <li>San Martín</li>
+          <li>Belgrano</li>
+          <li>Urquiza</li>
+        </ul>
+        <p class="muted">Bautizadas con próceres; integraron redes de trocha ancha, media y angosta.</p>
+      </article>
+      <article class="card reveal">
+        <h3>Corredores claves</h3>
+        <ul class="list-plain">
+          <li><strong>B.A. – Rosario – Córdoba:</strong> vital para granos y manufacturas.</li>
+          <li><strong>Patagonia (Roca):</strong> acceso a puertos del sur y yacimientos.</li>
+          <li><strong>Noroeste (Belgrano):</strong> azucarero y minero.</li>
+          <li><strong>Cuyo (San Martín):</strong> vitivinicultura y paso andino.</li>
+        </ul>
+      </article>
+      <article class="card reveal">
+        <h3>Trochas y desafíos</h3>
+        <p>La convivencia de <strong>múltiples trochas</strong> (ancha, media, angosta) generó transbordos y costos logísticos; aún así permitió capilaridad y penetración territorial.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- APORTES Y PROTAGONISTAS -->
+  <section id="aportes" class="section">
+    <div class="section-head">
+      <h2>Aportes y protagonistas</h2>
+      <p class="muted">Promotores, ingenieros, políticas públicas y capitales que moldearon la red.</p>
+    </div>
+    <div id="aportes-grid" class="grid cards-grid"></div>
+  </section>
+
+  <!-- CURIOSIDADES -->
+  <section id="curiosidades" class="section">
+    <div class="section-head">
+      <h2>Datos curiosos</h2>
+      <p class="muted">Pequeñas historias que dan color al ferrocarril.</p>
+    </div>
+    <div id="curios-grid" class="grid curios-grid"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="section">
+    <div class="section-head">
+      <h2>Mini-Quiz ferroviario</h2>
+      <p class="muted">¿Cuánto sabés? (No te preocupes, te doy feedback al instante).</p>
+    </div>
+    <form id="quiz-form" class="quiz">
+      <div class="q">
+        <label>1) ¿En qué año corrió <em>La Porteña</em> por primera vez?</label>
+        <div class="opts">
+          <label><input type="radio" name="q1" value="1857" /> 1857</label>
+          <label><input type="radio" name="q1" value="1866" /> 1866</label>
+          <label><input type="radio" name="q1" value="1870" /> 1870</label>
+        </div>
+      </div>
+      <div class="q">
+        <label>2) ¿Qué presidente impulsó la nacionalización (Ferrocarriles Argentinos)?</label>
+        <div class="opts">
+          <label><input type="radio" name="q2" value="Peron" /> Juan D. Perón</label>
+          <label><input type="radio" name="q2" value="Yrigoyen" /> H. Yrigoyen</label>
+          <label><input type="radio" name="q2" value="Alvear" /> M. T. de Alvear</label>
+        </div>
+      </div>
+      <div class="q">
+        <label>3) El Central Argentino unió Rosario con…</label>
+        <div class="opts">
+          <label><input type="radio" name="q3" value="Cordoba" /> Córdoba</label>
+          <label><input type="radio" name="q3" value="Mendoza" /> Mendoza</label>
+          <label><input type="radio" name="q3" value="Tucuman" /> Tucumán</label>
+        </div>
+      </div>
+      <button type="submit" class="btn">Corregir</button>
+      <p id="quiz-resultado" class="quiz-out"></p>
+    </form>
+  </section>
+
+  <!-- MODAL (para ampliar tarjetas) -->
+  <dialog id="modal">
+    <button class="modal-close" aria-label="Cerrar">✕</button>
+    <div id="modal-content"></div>
+  </dialog>
+
+  <!-- FUENTES -->
+  <section id="fuentes" class="section">
+    <div class="section-head">
+      <h2>Fuentes y lecturas sugeridas</h2>
+      <p class="muted">Textos introductorios, historia económica y documentos clásicos.</p>
+    </div>
+    <ul class="sources">
+      <li>Historia del Ferrocarril en Argentina (libros y archivos nacionales)</li>
+      <li>Ferrocarriles Argentinos (documentos históricos de la nacionalización, 1948)</li>
+      <li>Estudios sobre inversión británica y expansión (s. XIX – comienzos s. XX)</li>
+    </ul>
+    <p class="tiny muted">Nota: esta página resume información histórica ampliamente conocida. Si querés, después le agrego citas y enlaces formales específicos.</p>
+  </section>
+
+  <footer class="footer">
+    <p>Hecho con ❤️ para aprender sobre nuestra historia ferroviaria.</p>
+  </footer>
+
+  <audio id="sfx-tren" src="https://cdn.pixabay.com/download/audio/2021/10/26/audio_7c3c9d5a50.mp3?filename=train-approaching-ambient-9893.mp3" preload="auto"></audio>
+  <script src="main.js"></script>
+</body>
+</html>
