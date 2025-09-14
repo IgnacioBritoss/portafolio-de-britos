@@ -13,17 +13,12 @@
     <div class="bg-cloud cloud-1"></div>
     <div class="bg-cloud cloud-2"></div>
     <div class="bg-cloud cloud-3"></div>
-    <div class="bg-track"></div>
-    <div class="bg-train" aria-hidden="true">
-      <div class="loco"></div>
-      <div class="car"></div>
-      <div class="car"></div>
-    </div>
+    <div class="bg-mountains" aria-hidden="true"></div>
   </div>
 
   <!-- NAV -->
   <header class="nav">
-    <a href="#" class="brand">🚆 Ferrocarriles Argentinos</a>
+    <a href="#" class="brand">Ferrocarriles Argentinos</a>
     <nav>
       <a href="#intro">Inicio</a>
       <a href="#historia">Historia</a>
@@ -31,22 +26,29 @@
       <a href="#aportes">Aportes</a>
       <a href="#curiosidades">Curiosidades</a>
       <a href="#quiz">Quiz</a>
-      <a href="#fuentes">Fuentes</a>
     </nav>
   </header>
 
   <!-- HERO -->
   <section id="intro" class="section hero">
     <div class="hero-card reveal">
-      <h1>Sistema Ferroviario de Argentina</h1>
-      <p>
-        De <strong>La Porteña (1857)</strong> a la nacionalización de <strong>1948</strong>, 
-        los ciclos de expansión, cierres y reactivaciones: historia, protagonistas, datos curiosos e hitos
-        de una red que conectó puertos, ciudades y economías regionales.
-      </p>
-      <div class="actions">
-        <a class="btn" href="#historia">Ver línea de tiempo</a>
-        <button class="btn ghost" id="btn-sonido" aria-label="Sonido de tren">🎵 Sonido</button>
+      <div class="hero-inner">
+        <figure class="hero-figure">
+          <!-- Agrega tu imagen en assets/ensamble-ferroviario.jpg -->
+          <img src="descarga (2).jpg" alt="Nudo ferroviario histórico" class="hero-img" />
+          <figcaption class="tiny muted">Nudo ferroviario — conexiones principales</figcaption>
+        </figure>
+        <div class="hero-copy">
+          <h1>Sistema Ferroviario de Argentina</h1>
+          <p>
+            De <strong>La Porteña (1857)</strong> a la nacionalización de <strong>1948</strong>, 
+            los ciclos de expansión, cierres y reactivaciones: historia, protagonistas y hitos
+            de una red que conectó puertos, ciudades y economías regionales.
+          </p>
+          <div class="actions">
+            <a class="btn" href="#historia">Ver línea de tiempo</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -57,7 +59,7 @@
       <h2>Historia y línea de tiempo</h2>
       <div class="filters">
         <input id="buscador" type="search" placeholder="Filtrar por año, persona o evento…" />
-        <select id="filtro-epoca" aria-label="Filtrar por época">
+        <select id="filtro-epoca" class="native-select" aria-label="Filtrar por época">
           <option value="todas">Todas las épocas</option>
           <option value="origenes">Orígenes (1850–1880)</option>
           <option value="expansion">Expansión (1880–1916)</option>
@@ -76,7 +78,6 @@
   <section id="alcance" class="section">
     <div class="section-head">
       <h2>Alcance de la red y líneas</h2>
-      <p class="muted">Puntos de origen/destino emblemáticos y líneas históricas.</p>
     </div>
     <div class="grid reach-grid">
       <article class="card reveal">
@@ -115,7 +116,6 @@
   <section id="aportes" class="section">
     <div class="section-head">
       <h2>Aportes y protagonistas</h2>
-      <p class="muted">Promotores, ingenieros, políticas públicas y capitales que moldearon la red.</p>
     </div>
     <div id="aportes-grid" class="grid cards-grid"></div>
   </section>
@@ -124,7 +124,6 @@
   <section id="curiosidades" class="section">
     <div class="section-head">
       <h2>Datos curiosos</h2>
-      <p class="muted">Pequeñas historias que dan color al ferrocarril.</p>
     </div>
     <div id="curios-grid" class="grid curios-grid"></div>
   </section>
@@ -133,7 +132,6 @@
   <section id="quiz" class="section">
     <div class="section-head">
       <h2>Mini-Quiz ferroviario</h2>
-      <p class="muted">¿Cuánto sabés? (No te preocupes, te doy feedback al instante).</p>
     </div>
     <form id="quiz-form" class="quiz">
       <div class="q">
@@ -171,25 +169,13 @@
     <div id="modal-content"></div>
   </dialog>
 
-  <!-- FUENTES -->
-  <section id="fuentes" class="section">
-    <div class="section-head">
-      <h2>Fuentes y lecturas sugeridas</h2>
-      <p class="muted">Textos introductorios, historia económica y documentos clásicos.</p>
-    </div>
-    <ul class="sources">
-      <li>Historia del Ferrocarril en Argentina (libros y archivos nacionales)</li>
-      <li>Ferrocarriles Argentinos (documentos históricos de la nacionalización, 1948)</li>
-      <li>Estudios sobre inversión británica y expansión (s. XIX – comienzos s. XX)</li>
-    </ul>
-    <p class="tiny muted">Nota: esta página resume información histórica ampliamente conocida. Si querés, después le agrego citas y enlaces formales específicos.</p>
-  </section>
+  <!-- (Se eliminó la sección "Fuentes y lecturas sugeridas" por petición) -->
 
   <footer class="footer">
-    <p>Hecho con ❤️ para aprender sobre nuestra historia ferroviaria.</p>
+    
+    <p class="FIN">Hecho para aprender sobre nuestra historia ferroviaria.</p>
   </footer>
 
-  <audio id="sfx-tren" src="https://cdn.pixabay.com/download/audio/2021/10/26/audio_7c3c9d5a50.mp3?filename=train-approaching-ambient-9893.mp3" preload="auto"></audio>
   <script src="main.js"></script>
 </body>
 </html>

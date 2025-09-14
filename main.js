@@ -220,14 +220,56 @@ $("#quiz-form").addEventListener("submit", (e)=>{
   $("#quiz-resultado").style.color = ok===3 ? "var(--ok)" : "var(--warn)";
 });
 
-// Sonido
-$("#btn-sonido").addEventListener("click", ()=>{
-  $("#sfx-tren").currentTime = 0;
-  $("#sfx-tren").play();
-});
+// Custom dropdown para #filtro-epoca (mantiene el select real para accesibilidad)
+function initCustomSelect(){
+  const sel = $("#filtro-epoca");
+  if(!sel) return;
+  // crear UI
+  const wrap = document.createElement("div");
+  wrap.className = "custom-select";
+  const toggle = document.createElement("button");
+  toggle.type = "button";
+  toggle.className = "custom-select__toggle";
+  toggle.textContent = sel.selectedOptions[0]?.textContent || "Seleccionar…";
+  const list = document.createElement("ul");
+  list.className = "custom-select__list";
+
+  Array.from(sel.options).forEach(opt=>{
+    const li = document.createElement("li");
+    li.className = "custom-select__option";
+    li.dataset.value = opt.value;
+    li.textContent = opt.text;
+    if(opt.selected) li.classList.add("selected");
+    li.addEventListener("click", ()=>{
+      // setear valor en select real y disparar change
+      sel.value = li.dataset.value;
+      sel.dispatchEvent(new Event("change",{bubbles:true}));
+      toggle.textContent = li.textContent;
+      $$(".custom-select__option.selected").forEach(e=>e.classList.remove("selected"));
+      li.classList.add("selected");
+      list.classList.remove("open");
+    });
+    list.appendChild(li);
+  });
+
+  toggle.addEventListener("click",(ev)=>{
+    ev.stopPropagation();
+    list.classList.toggle("open");
+  });
+
+  // cerrar al click afuera
+  document.addEventListener("click",(e)=>{
+    if(!wrap.contains(e.target)) list.classList.remove("open");
+  });
+
+  wrap.appendChild(toggle);
+  wrap.appendChild(list);
+  sel.parentNode.insertBefore(wrap, sel.nextSibling);
+}
 
 // Init
 renderTimeline(eventos);
 renderAportes();
 renderCurios();
+initCustomSelect();
 observeReveal();
