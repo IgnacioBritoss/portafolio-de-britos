@@ -1,124 +1,107 @@
-// ===== Datos base (bien sintéticos, curados para no depender de Internet) =====
-const eventos = [
-  {
-    año: 1857,
-    titulo: "Primera locomotora: La Porteña",
-    texto: "Inicia el Ferrocarril del Oeste (Buenos Aires–Floresta, ~10 km). Marca el primer servicio ferroviario en Argentina.",
-    epoca: "origenes",
-    tags: ["La Porteña", "Ferrocarril del Oeste", "Buenos Aires", "Floresta"]
-  },
-  {
-    año: 1863,
-    titulo: "Concesión al Central Argentino",
-    texto: "Proyecto liderado por William Wheelwright; en 1870 unirá Rosario con Córdoba.",
-    epoca: "origenes",
-    tags: ["Central Argentino", "Wheelwright", "Rosario", "Córdoba"]
-  },
-  {
-    año: 1870,
-    titulo: "Rosario–Córdoba",
-    texto: "Se inaugura el tramo clave del Central Argentino, conectando el litoral con el centro del país.",
-    epoca: "origenes",
-    tags: ["Rosario", "Córdoba", "Central Argentino"]
-  },
-  {
-    año: 1880,
-    titulo: "Décadas de expansión",
-    texto: "Fuerte crecimiento con capitales británicos y estatales; la red se proyecta a puertos y economías regionales.",
-    epoca: "expansion",
-    tags: ["inversión británica", "puertos", "expansión"]
-  },
-  {
-    año: 1910,
-    titulo: "Consolidación de la red",
-    texto: "La red supera varias decenas de miles de km; el ferrocarril estructura el territorio y el comercio exterior.",
-    epoca: "consolidacion",
-    tags: ["consolidación", "exportaciones", "territorio"]
-  },
-  {
-    año: 1948,
-    titulo: "Nacionalización de los ferrocarriles",
-    texto: "Bajo Juan D. Perón se crean Ferrocarriles Argentinos (Mitre, Sarmiento, Roca, San Martín, Belgrano y Urquiza).",
-    epoca: "nacionalizacion",
-    tags: ["Perón", "Ferrocarriles Argentinos", "Mitre", "Sarmiento", "Roca", "San Martín", "Belgrano", "Urquiza"]
-  },
-  {
-    año: 1961,
-    titulo: "Recomendaciones de racionalización",
-    texto: "Informes técnicos (como el Plan Larkin) sugieren cierres de ramales deficitarios y modernización.",
-    epoca: "consolidacion",
-    tags: ["Plan Larkin", "cierres", "modernización"]
-  },
-  {
-    año: 1992,
-    titulo: "Privatizaciones y concesiones",
-    texto: "Proceso de los 90: divisiones operativas, cierres de servicios y nuevas concesiones.",
-    epoca: "privatizaciones",
-    tags: ["concesiones", "ramales", "servicios"]
-  },
-  {
-    año: 2015,
-    titulo: "Ferrocarriles Argentinos S.E.",
-    texto: "Se crea la empresa Ferrocarriles Argentinos S.E. y se reorganizan operadores y planificación.",
-    epoca: "siglo21",
-    tags: ["FASE", "planificación", "operadores"]
-  }
-];
-
-const aportes = [
-  {
-    titulo: "William Wheelwright",
-    subtitulo: "Impulsor del Central Argentino",
-    cuerpo: "Empresario clave en la conexión Rosario–Córdoba (1870). Su trabajo integró litoral y centro productivo.",
-    etiqueta: "Protagonista",
-  },
-  {
-    titulo: "Domingo F. Sarmiento",
-    subtitulo: "Promotor de educación e infraestructura",
-    cuerpo: "Desde su presidencia apoyó expansión ferroviaria y obras andinas, integrando Cuyo con el Litoral.",
-    etiqueta: "Política pública",
-  },
-  {
-    titulo: "Inversión británica",
-    subtitulo: "Capital y know-how",
-    cuerpo: "Construyó gran parte de la red en el siglo XIX, conectando puertos (BA, Rosario, Bahía Blanca) con zonas agroindustriales.",
-    etiqueta: "Finanzas",
-  },
-  {
-    titulo: "Nacionalización (1948)",
-    subtitulo: "Ferrocarriles Argentinos",
-    cuerpo: "Unificación estatal de líneas y estandarización de servicios, con nombres de próceres.",
-    etiqueta: "Estado",
-  }
-];
-
-const curiosidades = [
-  {
-    titulo: "La Porteña",
-    detalle: "La locomotora más famosa llegó desmontada desde Inglaterra y se armó en Buenos Aires. Aún hoy es ícono ferroviario."
-  },
-  {
-    titulo: "Múltiples trochas",
-    detalle: "La coexistencia de trocha ancha, media y angosta creó nodos de trasbordo muy particulares."
-  },
-  {
-    titulo: "Estaciones-joya",
-    detalle: "Constitución y Retiro son ejemplos de grandes terminales con arquitectura monumental del cambio de siglo."
-  },
-  {
-    titulo: "Trenes a vapor y diésel",
-    detalle: "La transición tecnológica convivió por décadas, con talleres propios que formaron técnicos especializados."
-  }
-];
-
-// ===== Utilidades UI =====
+// ===== Utilidades DOM =====
 const $ = (sel, root=document) => root.querySelector(sel);
 const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
 
+// ===== Datos: Eventos (línea de tiempo) =====
+const eventos = [
+  // Orígenes (1850–1880)
+  { año: 1857, titulo: "Primera locomotora: La Porteña", texto: "Ferrocarril del Oeste (Buenos Aires–Floresta, ~10 km). Primer servicio ferroviario del país.", epoca: "origenes", tags: ["La Porteña","FCO","Buenos Aires"] },
+  { año: 1862, titulo: "Ferrocarril Central Argentino (concesión)", texto: "Iniciativa de William Wheelwright para unir Rosario con Córdoba.", epoca: "origenes", tags: ["Wheelwright","Central Argentino"] },
+  { año: 1870, titulo: "Rosario–Córdoba", texto: "Tramo clave que conecta el litoral con el centro productivo.", epoca: "origenes", tags: ["Rosario","Córdoba"] },
+  { año: 1872, titulo: "Buenos Aires al Pacífico (BAP)", texto: "Red con proyección andina; luego San Martín.", epoca: "origenes", tags: ["BAP","Cuyo","Andes"] },
+  { año: 1876, titulo: "Ferrocarril Andino", texto: "Integra Cuyo con el Litoral; base de futuros pasos internacionales.", epoca: "origenes", tags: ["Andino","Mendoza","San Juan"] },
+
+  // Expansión (1880–1916)
+  { año: 1884, titulo: "Ley de Ferrocarriles de la Nación", texto: "Marco para expansión con capitales británicos y estatales.", epoca: "expansion", tags: ["inversión británica","Estado"] },
+  { año: 1886, titulo: "Bahía Blanca, puerto cerealero", texto: "Se afianza como nodo exportador del sur bonaerense.", epoca: "expansion", tags: ["puertos","trigo","Bahía Blanca"] },
+  { año: 1891, titulo: "Ferrocarril del Sud (luego Roca)", texto: "Penetración a la pampa y Patagonia norte.", epoca: "expansion", tags: ["Del Sud","Roca","Patagonia"] },
+  { año: 1900, titulo: "Red radial consolidada", texto: "Estructura orientada a puertos: BA, Rosario, Bahía Blanca.", epoca: "expansion", tags: ["radial","puertos"] },
+  { año: 1910, titulo: "Consolidación de la red", texto: "Decenas de miles de km y nuevas localidades de estación.", epoca: "consolidacion", tags: ["pueblos de estación","migración interna"] },
+
+  // Consolidación / entre-guerras (1916–1948)
+  { año: 1921, titulo: "Electrificación suburbana temprana", texto: "Mejora de servicios metropolitanos (tracción eléctrica).", epoca: "consolidacion", tags: ["suburbanos","electrificación"] },
+  { año: 1930, titulo: "Crisis y proteccionismo", texto: "Giro hacia el mercado interno; auge manufacturero urbano.", epoca: "consolidacion", tags: ["ISI temprana","protección"] },
+  { año: 1947, titulo: "Hacia la nacionalización", texto: "Argentina negocia compra de redes británicas; reorganización integral.", epoca: "consolidacion", tags: ["compra redes","británicas"] },
+
+  // Nacionalización y Estado empresario (desde 1948)
+  { año: 1948, titulo: "Nacionalización: Ferrocarriles Argentinos", texto: "Creación de las líneas Mitre, Sarmiento, Roca, San Martín, Belgrano y Urquiza.", epoca: "nacionalizacion", tags: ["Perón","FA","Mitre","Sarmiento","Roca","San Martín","Belgrano","Urquiza"] },
+  { año: 1951, titulo: "Plan Quinquenal y talleres", texto: "Mantenimiento y modernización de material y vías.", epoca: "nacionalizacion", tags: ["talleres","planificación"] },
+  { año: 1961, titulo: "Plan Larkin (racionalización)", texto: "Propuestas para cerrar ramales deficitarios y concentrar tráfico.", epoca: "nacionalizacion", tags: ["Plan Larkin","eficiencia"] },
+  { año: 1970, titulo: "Pico de extensión operativa", texto: "La red supera los ~47–48 mil km en distintos relevamientos.", epoca: "nacionalizacion", tags: ["extensión","capilaridad"] },
+
+  // Reformas y privatizaciones (1990s)
+  { año: 1992, titulo: "Privatizaciones y concesiones", texto: "División operativa; caída de servicios de larga distancia.", epoca: "privatizaciones", tags: ["concesiones","larga distancia"] },
+  { año: 1993, titulo: "Cierre de talleres y ramales", texto: "Fuerte impacto social y económico en pueblos ferroviarios.", epoca: "privatizaciones", tags: ["empleo","despoblamiento"] },
+
+  // Siglo XXI (2003–2023)
+  { año: 2008, titulo: "Reaperturas parciales", texto: "Vuelven algunos servicios regionales y obras puntuales.", epoca: "siglo21", tags: ["reaperturas","regionales"] },
+  { año: 2015, titulo: "Ferrocarriles Argentinos S.E.", texto: "Marco para coordinación de operadores y planificación.", epoca: "siglo21", tags: ["FASE","organización"] },
+  { año: 2019, titulo: "Renovación metropolitana", texto: "Material rodante nuevo y mejoras de señalamiento.", epoca: "siglo21", tags: ["AMBA","seguridad"] },
+  { año: 2021, titulo: "Carga y logística", texto: "Competencia con camión e hidrovía; foco en eficiencia multimodal.", epoca: "siglo21", tags: ["cargas","puertos","hidrovía"] },
+  { año: 2023, titulo: "Mapa actual", texto: "Red más acotada; urbanos clave en AMBA y reanudaciones puntuales.", epoca: "siglo21", tags: ["2023","servicios"] }
+];
+
+// ===== Aportes / protagonistas =====
+const aportes = [
+  { titulo:"William Wheelwright", subtitulo:"Impulsor del Central Argentino", cuerpo:"Conexión Rosario–Córdoba (1870) integró litoral y centro productivo.", etiqueta:"Protagonista" },
+  { titulo:"Domingo F. Sarmiento", subtitulo:"Educación e infraestructura", cuerpo:"Promovió obras y pasos andinos, articulando Cuyo con el Litoral.", etiqueta:"Política pública" },
+  { titulo:"Inversión británica", subtitulo:"Capital y know-how", cuerpo:"Financió y operó gran parte de la red orientada a puertos de exportación.", etiqueta:"Finanzas" },
+  { titulo:"Nacionalización (1948)", subtitulo:"Ferrocarriles Argentinos", cuerpo:"Unificación estatal con líneas Mitre, Sarmiento, Roca, San Martín, Belgrano y Urquiza.", etiqueta:"Estado" },
+  { titulo:"Talleres ferroviarios", subtitulo:"Sistemas de mantenimiento", cuerpo:"Formaron técnicos y sostuvieron flotas de vapor y diésel por décadas.", etiqueta:"Trabajo" },
+  { titulo:"Electrificación suburbana", subtitulo:"Servicio metropolitano", cuerpo:"Mejoró frecuencias y seguridad en el AMBA desde inicios del siglo XX.", etiqueta:"Tecnología" },
+  { titulo:"Plan Larkin (1961)", subtitulo:"Racionalización", cuerpo:"Propuso concentrar tráfico rentable y cerrar ramales deficitarios.", etiqueta:"Gestión" },
+  { titulo:"Puertos y ferrocarril", subtitulo:"Logística exportadora", cuerpo:"Red radial a BA, Rosario, Bahía Blanca redujo costos de transporte.", etiqueta:"Territorio" },
+  { titulo:"Cordón industrial", subtitulo:"ISI y tren obrero", cuerpo:"El ferrocarril sostuvo movilidad laboral y abastecimiento fabril.", etiqueta:"Industria" },
+  { titulo:"Reaperturas recientes", subtitulo:"Servicios regionales", cuerpo:"Volvieron algunos corredores y se modernizó material en AMBA.", etiqueta:"Actualidad" }
+];
+
+// ===== Curiosidades =====
+const curiosidades = [
+  { titulo:"La Porteña", detalle:"Llegó desmontada desde Inglaterra y se armó en Buenos Aires; hoy es ícono ferroviario." },
+  { titulo:"Múltiples trochas", detalle:"Ancha, media y angosta: dieron capilaridad pero generaron transbordos y costos." },
+  { titulo:"Estaciones-joya", detalle:"Retiro y Constitución: terminales monumentales del cambio de siglo." },
+  { titulo:"Talleres propios", detalle:"Grandes complejos (p.ej., Tafí Viejo) sostuvieron reparación y oficios." },
+  { titulo:"Tracción mixta", detalle:"Vapor y diésel convivieron por décadas; la electrificación avanzó en suburbanos." },
+  { titulo:"Pueblos de estación", detalle:"Muchos nacieron y crecieron alrededor del andén y el galpón de cargas." },
+  { titulo:"Trenes internacionales", detalle:"Enlaces andinos y mesopotámicos buscaron salida bioceánica/regional." },
+  { titulo:"Mail y encomiendas", detalle:"El tren fue clave para correo y paquetería antes del transporte automotor." },
+  { titulo:"Topónimos ferroviarios", detalle:"Barrios y localidades llevan nombres de líneas, estaciones o ingenieros." },
+  { titulo:"Museos y preservación", detalle:"Asociaciones y museos mantienen material histórico en circulación." }
+];
+
+// ===== Series (para futuros gráficos) =====
+const seriesKmVias = [
+  { anio: 1880, km: 9000 }, { anio: 1900, km: 30000 }, { anio: 1914, km: 40000 },
+  { anio: 1948, km: 45000 }, { anio: 1970, km: 48000 }, { anio: 1995, km: 22000 },
+  { anio: 2010, km: 19000 }, { anio: 2023, km: 20000 }
+];
+const seriesPasajeros = [
+  { anio: 1930, idx: 70 }, { anio: 1950, idx: 100 }, { anio: 1975, idx: 120 },
+  { anio: 1995, idx: 60 }, { anio: 2015, idx: 95 }, { anio: 2023, idx: 110 }
+];
+const seriesCargas = [
+  { anio: 1950, idx: 70 }, { anio: 1970, idx: 100 }, { anio: 1990, idx: 85 },
+  { anio: 2005, idx: 60 }, { anio: 2015, idx: 75 }, { anio: 2023, idx: 82 }
+];
+const mapasNotas = {
+  "1903": [
+    "Red en expansión con fuerte tracción británica.",
+    "Orientación a puertos exportadores (BA, Rosario, Bahía Blanca).",
+    "Capilaridad en Pampa Húmeda; rezagos relativos NOA/NEA profundo."
+  ],
+  "2023": [
+    "Red más acotada; predominio del servicio metropolitano.",
+    "Carga compite con camión e hidrovía; reaperturas puntuales.",
+    "Proyectos de eficiencia logística y material renovado en AMBA."
+  ]
+};
+
+// ===== Render: Timeline =====
 function renderTimeline(list){
   const cont = $("#timeline");
   cont.innerHTML = "";
   list
+    .slice()
     .sort((a,b)=>a.año - b.año)
     .forEach(ev=>{
       const li = document.createElement("li");
@@ -131,13 +114,14 @@ function renderTimeline(list){
             <span class="tag">${ev.epoca}</span>
           </header>
           <p>${ev.texto}</p>
-          <div class="tags">${ev.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+          <div class="tags">${(ev.tags||[]).map(t=>`<span class="tag">${t}</span>`).join("")}</div>
         </article>`;
       cont.appendChild(li);
     });
   observeReveal();
 }
 
+// ===== Render: Aportes =====
 function renderAportes(){
   const grid = $("#aportes-grid");
   grid.innerHTML = aportes.map(a=>`
@@ -149,7 +133,6 @@ function renderAportes(){
     </article>
   `).join("");
   observeReveal();
-  // abrir modal
   $$("#aportes-grid .card-link").forEach(card=>{
     card.addEventListener("click", ()=>{
       openModal(`<h3 style="margin-top:0">${card.dataset.title}</h3><p>${card.dataset.body}</p>`);
@@ -157,6 +140,7 @@ function renderAportes(){
   });
 }
 
+// ===== Render: Curiosidades =====
 function renderCurios(){
   const grid = $("#curios-grid");
   grid.innerHTML = curiosidades.map(c=>`
@@ -174,13 +158,13 @@ function renderCurios(){
   });
 }
 
-// Modal
+// ===== Modal =====
 const modal = $("#modal");
 const modalContent = $("#modal-content");
 $(".modal-close").addEventListener("click", ()=> modal.close());
 function openModal(html){ modalContent.innerHTML = html; modal.showModal(); }
 
-// Reveal on scroll
+// ===== Reveal on scroll =====
 function observeReveal(){
   const obs = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
@@ -190,7 +174,7 @@ function observeReveal(){
   $$(".reveal").forEach(el=>obs.observe(el));
 }
 
-// Filtros
+// ===== Filtros =====
 $("#buscador").addEventListener("input", filtrar);
 $("#filtro-epoca").addEventListener("change", filtrar);
 function filtrar(){
@@ -206,25 +190,10 @@ function filtrar(){
   renderTimeline(lista);
 }
 
-// Quiz
-$("#quiz-form").addEventListener("submit", (e)=>{
-  e.preventDefault();
-  const r1 = new FormData(e.target).get("q1");
-  const r2 = new FormData(e.target).get("q2");
-  const r3 = new FormData(e.target).get("q3");
-  let ok = 0;
-  if(r1==="1857") ok++;
-  if(r2==="Peron") ok++;
-  if(r3==="Cordoba") ok++;
-  $("#quiz-resultado").textContent = `✔️ ${ok}/3 correctas`;
-  $("#quiz-resultado").style.color = ok===3 ? "var(--ok)" : "var(--warn)";
-});
-
-// Custom dropdown para #filtro-epoca (mantiene el select real para accesibilidad)
+// ===== Custom select accesible =====
 function initCustomSelect(){
   const sel = $("#filtro-epoca");
   if(!sel) return;
-  // crear UI
   const wrap = document.createElement("div");
   wrap.className = "custom-select";
   const toggle = document.createElement("button");
@@ -241,7 +210,6 @@ function initCustomSelect(){
     li.textContent = opt.text;
     if(opt.selected) li.classList.add("selected");
     li.addEventListener("click", ()=>{
-      // setear valor en select real y disparar change
       sel.value = li.dataset.value;
       sel.dispatchEvent(new Event("change",{bubbles:true}));
       toggle.textContent = li.textContent;
@@ -257,7 +225,6 @@ function initCustomSelect(){
     list.classList.toggle("open");
   });
 
-  // cerrar al click afuera
   document.addEventListener("click",(e)=>{
     if(!wrap.contains(e.target)) list.classList.remove("open");
   });
@@ -267,9 +234,29 @@ function initCustomSelect(){
   sel.parentNode.insertBefore(wrap, sel.nextSibling);
 }
 
-// Init
-renderTimeline(eventos);
-renderAportes();
-renderCurios();
-initCustomSelect();
-observeReveal();
+// ===== Quiz (10 preguntas) =====
+document.getElementById("quiz-form").addEventListener("submit", (e)=>{
+  e.preventDefault();
+  const correctas = {
+    q1:"1857", q2:"Peron", q3:"Cordoba", q4:"puertos", q5:"larkin",
+    q6:"suburbanizacion", q7:"noa", q8:"camion", q9:"colorTren", q10:"bb"
+  };
+  let ok = 0, total = Object.keys(correctas).length;
+  for (const k in correctas){
+    const val = new FormData(e.target).get(k);
+    if (val === correctas[k]) ok++;
+  }
+  const out = document.getElementById("quiz-resultado");
+  out.textContent = `✔️ ${ok}/${total} correctas`;
+  out.style.color = ok===total ? "var(--ok)" : "var(--warn)";
+});
+
+// ===== Init =====
+function init(){
+  renderTimeline(eventos);
+  renderAportes();
+  renderCurios();
+  initCustomSelect();
+  observeReveal();
+}
+document.addEventListener("DOMContentLoaded", init);

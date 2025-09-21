@@ -23,8 +23,10 @@
       <a href="#intro">Inicio</a>
       <a href="#historia">Historia</a>
       <a href="#alcance">Alcance</a>
+      <a href="#modelos">Modelos</a>
       <a href="#aportes">Aportes</a>
       <a href="#curiosidades">Curiosidades</a>
+      
       <a href="#quiz">Quiz</a>
     </nav>
   </header>
@@ -35,7 +37,7 @@
       <div class="hero-inner">
         <figure class="hero-figure">
           <!-- Agrega tu imagen en assets/ensamble-ferroviario.jpg -->
-          <img src="descarga (2).jpg" alt="Nudo ferroviario histórico" class="hero-img" />
+          <img src="descarga.jpg" alt="Nudo ferroviario histórico" class="hero-img" />
           <figcaption class="tiny muted">Nudo ferroviario — conexiones principales</figcaption>
         </figure>
         <div class="hero-copy">
@@ -45,9 +47,7 @@
             los ciclos de expansión, cierres y reactivaciones: historia, protagonistas y hitos
             de una red que conectó puertos, ciudades y economías regionales.
           </p>
-          <div class="actions">
-            <a class="btn" href="#historia">Ver línea de tiempo</a>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -70,7 +70,6 @@
         </select>
       </div>
     </div>
-
     <ol id="timeline" class="timeline"></ol>
   </section>
 
@@ -112,6 +111,41 @@
     </div>
   </section>
 
+  <!-- MODELOS ECONÓMICOS -->
+  <section id="modelos" class="section">
+    <div class="section-head">
+      <h2>Modelos económicos de Argentina y el ferrocarril</h2>
+    </div>
+
+    <!-- contenedor de grilla: aseguramos que las tarjetas queden siempre debajo del título -->
+    <div class="models-grid">
+      <article class="card">
+        <h3>1) Modelo agroexportador (c. 1880–1930)</h3>
+        <p><strong>Claves:</strong> capital y operación británica; <em>red radial</em> a puertos (Buenos Aires, Rosario, Bahía Blanca); objetivo de <strong>bajar costos</strong> de transporte de granos y carnes. La <strong>Pampa Húmeda</strong> se expande; surgen <em>pueblos de estación</em>; crece la inserción en la economía mundial como proveedor de alimentos.</p>
+        <p><strong>Efectos territoriales:</strong> integración litoral-pampa; rezagos relativos del NOA/NEA profundo; jerarquización de nodos portuarios.</p>
+        <p><strong>Indicadores sugeridos:</strong> km de vías, tiempos a puerto, toneladas exportadas.</p>
+      </article>
+      <article class="card">
+        <h3>2) ISI – Industrialización por Sustitución de Importaciones (c. 1930–1975)</h3>
+        <p><strong>Claves:</strong> proteccionismo y mercado interno; el tren sostiene <strong>movilidad de trabajadores</strong> y <strong>abastecimiento fabril</strong> (suburbanos y cargas cortas). Estado empresario, normalización y talleres. Se fortalece el <strong>conurbano</strong> y polos industriales.</p>
+        <p><strong>Efectos territoriales:</strong> suburbanización; concentración fabril en AMBA y ejes Rosario-Córdoba y Cuyo.</p>
+        <p><strong>Indicadores sugeridos:</strong> pasajeros metropolitanos, empleo ferroviario, tarifas relativas.</p>
+      </article>
+      <article class="card">
+        <h3>3) Reestructuración y privatizaciones (c. 1976–2001)</h3>
+        <p><strong>Claves:</strong> desinversión previa y <strong>privatizaciones 90s</strong>; caen servicios de larga distancia; auge camión y rutas. Cierres de talleres y ramales, con fuerte impacto social.</p>
+        <p><strong>Efectos territoriales:</strong> <strong>aislamiento</strong> de localidades; pérdida de empleos ferroviarios; migraciones.</p>
+        <p><strong>Indicadores sugeridos:</strong> discontinuidades de servicio, accidentes, tiempos/ton-km por modo.</p>
+      </article>
+      <article class="card">
+        <h3>4) Recuperaciones parciales y proyectos (c. 2003–2023)</h3>
+        <p><strong>Claves:</strong> reaperturas selectivas; renovación metropolitana (material y señalamiento); debate sobre <strong>cargas</strong>, <strong>puertos</strong> e <strong>hidrovía</strong>. En foco: eficiencia multimodal.</p>
+        <p><strong>Efectos territoriales:</strong> mejoras de conectividad en AMBA y algunos corredores regionales; oportunidades en logística agroindustrial y minería.</p>
+        <p><strong>Indicadores sugeridos:</strong> puntualidad, pasajeros/día, toneladas y cuota modal.</p>
+      </article>
+    </div>
+  </section>
+
   <!-- APORTES Y PROTAGONISTAS -->
   <section id="aportes" class="section">
     <div class="section-head">
@@ -128,36 +162,85 @@
     <div id="curios-grid" class="grid curios-grid"></div>
   </section>
 
+  
+
   <!-- QUIZ -->
   <section id="quiz" class="section">
     <div class="section-head">
       <h2>Mini-Quiz ferroviario</h2>
     </div>
     <form id="quiz-form" class="quiz">
-      <div class="q">
-        <label>1) ¿En qué año corrió <em>La Porteña</em> por primera vez?</label>
+      <div class="q"><label>1) ¿En qué año corrió <em>La Porteña</em> por primera vez?</label>
         <div class="opts">
-          <label><input type="radio" name="q1" value="1857" /> 1857</label>
-          <label><input type="radio" name="q1" value="1866" /> 1866</label>
-          <label><input type="radio" name="q1" value="1870" /> 1870</label>
+          <label><input type="radio" name="q1" value="1857"> 1857</label>
+          <label><input type="radio" name="q1" value="1866"> 1866</label>
+          <label><input type="radio" name="q1" value="1870"> 1870</label>
         </div>
       </div>
-      <div class="q">
-        <label>2) ¿Qué presidente impulsó la nacionalización (Ferrocarriles Argentinos)?</label>
+      <div class="q"><label>2) ¿Qué presidente impulsó la nacionalización en 1948?</label>
         <div class="opts">
-          <label><input type="radio" name="q2" value="Peron" /> Juan D. Perón</label>
-          <label><input type="radio" name="q2" value="Yrigoyen" /> H. Yrigoyen</label>
-          <label><input type="radio" name="q2" value="Alvear" /> M. T. de Alvear</label>
+          <label><input type="radio" name="q2" value="Peron"> Juan D. Perón</label>
+          <label><input type="radio" name="q2" value="Yrigoyen"> H. Yrigoyen</label>
+          <label><input type="radio" name="q2" value="Alvear"> M. T. de Alvear</label>
         </div>
       </div>
-      <div class="q">
-        <label>3) El Central Argentino unió Rosario con…</label>
+      <div class="q"><label>3) El Central Argentino unió Rosario con…</label>
         <div class="opts">
-          <label><input type="radio" name="q3" value="Cordoba" /> Córdoba</label>
-          <label><input type="radio" name="q3" value="Mendoza" /> Mendoza</label>
-          <label><input type="radio" name="q3" value="Tucuman" /> Tucumán</label>
+          <label><input type="radio" name="q3" value="Cordoba"> Córdoba</label>
+          <label><input type="radio" name="q3" value="Mendoza"> Mendoza</label>
+          <label><input type="radio" name="q3" value="Tucuman"> Tucumán</label>
         </div>
       </div>
+      <div class="q"><label>4) ¿Cuál fue el objetivo principal del trazado radial?</label>
+        <div class="opts">
+          <label><input type="radio" name="q4" value="puertos"> Conectar producción con puertos</label>
+          <label><input type="radio" name="q4" value="turismo"> Fomentar turismo</label>
+          <label><input type="radio" name="q4" value="militar"> Uso militar</label>
+        </div>
+      </div>
+      <div class="q"><label>5) ¿Qué plan de 1961 propuso racionalización?</label>
+        <div class="opts">
+          <label><input type="radio" name="q5" value="larkin"> Plan Larkin</label>
+          <label><input type="radio" name="q5" value="quinquenal"> Plan Quinquenal</label>
+          <label><input type="radio" name="q5" value="belgrano"> Plan Belgrano</label>
+        </div>
+      </div>
+      <div class="q"><label>6) ¿Qué efecto territorial trajo la ISI?</label>
+        <div class="opts">
+          <label><input type="radio" name="q6" value="suburbanizacion"> Suburbanización y polos industriales</label>
+          <label><input type="radio" name="q6" value="ruralizacion"> Ruralización</label>
+          <label><input type="radio" name="q6" value="desierto"> Despoblación general</label>
+        </div>
+      </div>
+      <div class="q"><label>7) ¿Qué región se asocia al Belgrano (trocha angosta)?</label>
+        <div class="opts">
+          <label><input type="radio" name="q7" value="noa"> NOA (azucarero/minero)</label>
+          <label><input type="radio" name="q7" value="patagonia"> Patagonia</label>
+          <label><input type="radio" name="q7" value="cuyo"> Cuyo</label>
+        </div>
+      </div>
+      <div class="q"><label>8) ¿Qué modo compite con el tren en cargas desde los 70–90?</label>
+        <div class="opts">
+          <label><input type="radio" name="q8" value="camion"> Transporte por camión</label>
+          <label><input type="radio" name="q8" value="avion"> Avión</label>
+          <label><input type="radio" name="q8" value="caballo"> Caballo</label>
+        </div>
+      </div>
+      <div class="q"><label>9) ¿Qué indicador NO es típico para evaluar servicios?</label>
+        <div class="opts">
+          <label><input type="radio" name="q9" value="puntualidad"> Puntualidad</label>
+          <label><input type="radio" name="q9" value="pasajerosDia"> Pasajeros/día</label>
+          <label><input type="radio" name="q9" value="colorTren"> Color de los trenes</label>
+        </div>
+      </div>
+      <div class="q"><label>10) ¿Qué nodo fue clave para granos del sur bonaerense?</label>
+        <div class="opts">
+          <label><input type="radio" name="q10" value="bb"> Bahía Blanca</label>
+          <label><input type="radio" name="q10" value="bariloche"> Bariloche</label>
+          <label><input type="radio" name="q10" value="salta"> Salta</label>
+        </div>
+      </div>
+
       <button type="submit" class="btn">Corregir</button>
       <p id="quiz-resultado" class="quiz-out"></p>
     </form>
@@ -169,10 +252,7 @@
     <div id="modal-content"></div>
   </dialog>
 
-  <!-- (Se eliminó la sección "Fuentes y lecturas sugeridas" por petición) -->
-
   <footer class="footer">
-    
     <p class="FIN">Hecho para aprender sobre nuestra historia ferroviaria.</p>
   </footer>
 
