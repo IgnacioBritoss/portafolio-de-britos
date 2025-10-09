@@ -500,3 +500,29 @@ custom-select__list::-webkit-scrollbar-thumb{ background: rgba(255,255,255,0.08)
   grid-template-columns: 1fr !important; /* elimina la columna reservada al punto */
   gap: 0.75rem;                           /* un gap suave entre ítemes */
 }
+
+
+/* ==== Logo navbar (ajuste tamaño + borde) ==== */
+.nav .brand{
+  display:flex; align-items:center; gap:10px;
+  font-weight:800; text-decoration:none; color:var(--ink);
+}
+
+.brand-logo{
+  height:32px;              /* tamaño tipo Toro Mecánico */
+  width:auto;               /* mantiene proporción */
+  max-width:120px;          /* por si el PNG es muy ancho */
+  object-fit:contain;       /* no se deforma */
+  display:block;
+
+  /* “placa” con borde negro */
+  border:2px solid #000;
+  border-radius:8px;        /* podés usar 0 si la querés cuadrada */
+  background:#fff;          /* ayuda si el PNG tiene fondo transparente */
+  padding:4px;              /* separa el trazo del borde */
+  box-shadow:none;          /* sin sombras para que el borde se vea nítido */
+}
+
+@media (max-width:720px){
+  .brand-logo{ height:26px; padding:3px; border-width:2px; }
+}
