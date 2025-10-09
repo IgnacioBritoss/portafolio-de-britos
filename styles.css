@@ -378,3 +378,125 @@ custom-select__list::-webkit-scrollbar-thumb{ background: rgba(255,255,255,0.08)
   .custom-select__toggle{ min-width:unset; width:100% }
   .custom-select__list{ top: calc(100% + 8px); }
 }
+
+
+/* ==== Mini-Quiz: radios en cajas con tilde ==== */
+.quiz .opts{
+  display: grid;
+  gap: .6rem;
+}
+
+/* Ocultamos el radio nativo pero mantenemos accesibilidad */
+.quiz .opts input[type="radio"]{
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Caja clickeable (el <label>) */
+.quiz .opts label{
+  position: relative;
+  display: block;
+  padding: 12px 14px 12px 44px; /* espacio para el cuadrito */
+  border: 2px solid var(--ring, #cbd5e1);
+  border-radius: 10px;
+  background: var(--surface, #f8fafc);
+  color: var(--text, #0f172a);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color .15s ease, background .15s ease, box-shadow .15s ease;
+}
+
+/* Cuadradito a la izquierda */
+.quiz .opts label::before{
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--muted, #64748b);
+  border-radius: 6px; /* cuadrado suave */
+  background: var(--surface-2, #eef2ff);
+  box-shadow: inset 0 0 0 2px transparent;
+  transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+/* Tilde (oculto por defecto) */
+.quiz .opts label::after{
+  content: "✓";
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-58%);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+  opacity: 0;
+  transition: opacity .12s ease;
+}
+
+/* Hover/active suave */
+.quiz .opts label:hover{
+  border-color: var(--accent, #eeb31e);
+}
+.quiz .opts label:active{
+  transform: translateY(0.5px);
+}
+
+/* Estado seleccionado usando :has() (Chrome/Edge/Firefox/Safari modernos) */
+.quiz .opts label:has(input:checked){
+  border-color: var(--accent, #eeb31e);
+  background: color-mix(in srgb, var(--accent, #eeb31e) 10%, var(--surface, #f8fafc));
+}
+.quiz .opts label:has(input:checked)::before{
+  background: var(--accent, #eeb31e);
+  border-color: var(--accent, #eeb31e);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.25);
+}
+.quiz .opts label:has(input:checked)::after{
+  opacity: 1;
+}
+
+/* Accesibilidad: foco teclado visible */
+.quiz .opts label:has(input:focus-visible){
+  outline: 3px solid var(--accent, #eeb31e);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent, #eeb31e) 30%, transparent);
+}
+
+/* --- Centrar el tilde en el cuadrado --- */
+.quiz .opts label{
+  --box-left: 12px;   /* mismo offset que en ::before */
+  --box-size: 20px;   /* mismo tamaño que en ::before */
+}
+
+/* usa las variables arriba para el cuadrado */
+.quiz .opts label::before{
+  left: var(--box-left);
+  width: var(--box-size);
+  height: var(--box-size);
+}
+
+/* coloca el ✔ en el centro geométrico del cuadrado */
+.quiz .opts label::after{
+  left: calc(var(--box-left) + var(--box-size) / 2);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Quitar línea vertical y puntos de la timeline */
+.timeline::before{
+  content:none !important;   /* oculta la línea */
+}
+.dot{
+  display:none !important;   /* oculta los puntos */
+}
+.item{
+  grid-template-columns: 1fr !important; /* elimina la columna reservada al punto */
+  gap: 0.75rem;                           /* un gap suave entre ítemes */
+}

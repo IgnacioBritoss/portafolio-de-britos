@@ -5,28 +5,28 @@ const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
 // ===== Datos: Eventos (línea de tiempo) =====
 const eventos = [
   // Orígenes (1850–1880)
-  { año: 1857, titulo: "Primera locomotora: La Porteña", texto: "Ferrocarril del Oeste (Buenos Aires–Floresta, ~10 km). Primer servicio ferroviario del país.", epoca: "origenes", tags: ["La Porteña","FCO","Buenos Aires"] },
-  { año: 1862, titulo: "Ferrocarril Central Argentino (concesión)", texto: "Iniciativa de William Wheelwright para unir Rosario con Córdoba.", epoca: "origenes", tags: ["Wheelwright","Central Argentino"] },
+  { año: 1857, titulo: "Primera locomotora: La Porteña", texto: "Ferrocarril del Oeste Buenos Aires–Floresta, ~10 km. Primer servicio ferroviario del país.", epoca: "origenes", tags: ["La Porteña","FCO","Buenos Aires"] },
+  { año: 1862, titulo: "Ferrocarril Central Argentino concesión", texto: "Iniciativa de William Wheelwright para unir Rosario con Córdoba.", epoca: "origenes", tags: ["Wheelwright","Central Argentino"] },
   { año: 1870, titulo: "Rosario–Córdoba", texto: "Tramo clave que conecta el litoral con el centro productivo.", epoca: "origenes", tags: ["Rosario","Córdoba"] },
-  { año: 1872, titulo: "Buenos Aires al Pacífico (BAP)", texto: "Red con proyección andina; luego San Martín.", epoca: "origenes", tags: ["BAP","Cuyo","Andes"] },
+  { año: 1872, titulo: "Buenos Aires al Pacífico BAP", texto: "Red con proyección andina; luego San Martín.", epoca: "origenes", tags: ["BAP","Cuyo","Andes"] },
   { año: 1876, titulo: "Ferrocarril Andino", texto: "Integra Cuyo con el Litoral; base de futuros pasos internacionales.", epoca: "origenes", tags: ["Andino","Mendoza","San Juan"] },
 
   // Expansión (1880–1916)
   { año: 1884, titulo: "Ley de Ferrocarriles de la Nación", texto: "Marco para expansión con capitales británicos y estatales.", epoca: "expansion", tags: ["inversión británica","Estado"] },
   { año: 1886, titulo: "Bahía Blanca, puerto cerealero", texto: "Se afianza como nodo exportador del sur bonaerense.", epoca: "expansion", tags: ["puertos","trigo","Bahía Blanca"] },
-  { año: 1891, titulo: "Ferrocarril del Sud (luego Roca)", texto: "Penetración a la pampa y Patagonia norte.", epoca: "expansion", tags: ["Del Sud","Roca","Patagonia"] },
+  { año: 1891, titulo: "Ferrocarril del Sud luego Roca", texto: "Penetración a la pampa y Patagonia norte.", epoca: "expansion", tags: ["Del Sud","Roca","Patagonia"] },
   { año: 1900, titulo: "Red radial consolidada", texto: "Estructura orientada a puertos: BA, Rosario, Bahía Blanca.", epoca: "expansion", tags: ["radial","puertos"] },
   { año: 1910, titulo: "Consolidación de la red", texto: "Decenas de miles de km y nuevas localidades de estación.", epoca: "consolidacion", tags: ["pueblos de estación","migración interna"] },
 
   // Consolidación / entre-guerras (1916–1948)
-  { año: 1921, titulo: "Electrificación suburbana temprana", texto: "Mejora de servicios metropolitanos (tracción eléctrica).", epoca: "consolidacion", tags: ["suburbanos","electrificación"] },
+  { año: 1921, titulo: "Electrificación suburbana temprana", texto: "Mejora de servicios metropolitanos tracción eléctrica.", epoca: "consolidacion", tags: ["suburbanos","electrificación"] },
   { año: 1930, titulo: "Crisis y proteccionismo", texto: "Giro hacia el mercado interno; auge manufacturero urbano.", epoca: "consolidacion", tags: ["ISI temprana","protección"] },
   { año: 1947, titulo: "Hacia la nacionalización", texto: "Argentina negocia compra de redes británicas; reorganización integral.", epoca: "consolidacion", tags: ["compra redes","británicas"] },
 
   // Nacionalización y Estado empresario (desde 1948)
   { año: 1948, titulo: "Nacionalización: Ferrocarriles Argentinos", texto: "Creación de las líneas Mitre, Sarmiento, Roca, San Martín, Belgrano y Urquiza.", epoca: "nacionalizacion", tags: ["Perón","FA","Mitre","Sarmiento","Roca","San Martín","Belgrano","Urquiza"] },
   { año: 1951, titulo: "Plan Quinquenal y talleres", texto: "Mantenimiento y modernización de material y vías.", epoca: "nacionalizacion", tags: ["talleres","planificación"] },
-  { año: 1961, titulo: "Plan Larkin (racionalización)", texto: "Propuestas para cerrar ramales deficitarios y concentrar tráfico.", epoca: "nacionalizacion", tags: ["Plan Larkin","eficiencia"] },
+  { año: 1961, titulo: "Plan Larkin racionalización", texto: "Propuestas para cerrar ramales deficitarios y concentrar tráfico.", epoca: "nacionalizacion", tags: ["Plan Larkin","eficiencia"] },
   { año: 1970, titulo: "Pico de extensión operativa", texto: "La red supera los ~47–48 mil km en distintos relevamientos.", epoca: "nacionalizacion", tags: ["extensión","capilaridad"] },
 
   // Reformas y privatizaciones (1990s)
@@ -247,7 +247,7 @@ document.getElementById("quiz-form").addEventListener("submit", (e)=>{
     if (val === correctas[k]) ok++;
   }
   const out = document.getElementById("quiz-resultado");
-  out.textContent = `✔️ ${ok}/${total} correctas`;
+  out.textContent = ` ${ok}/${total} correctas`;
   out.style.color = ok===total ? "var(--ok)" : "var(--warn)";
 });
 
