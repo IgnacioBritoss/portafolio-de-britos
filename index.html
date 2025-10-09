@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sistema Ferroviario Argentino — Historia & Datos</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="geo.png">
 </head>
 <body>
   <!-- FONDO ANIMADO -->
@@ -18,7 +19,10 @@
 
   <!-- NAV -->
   <header class="nav">
-    <a href="#" class="brand">Ferrocarriles Argentinos</a>
+    <a href="#intro" class="brand" aria-label="Inicio">
+      <img src="geo.png" alt="Logo Geografía" class="brand-logo" />
+      <span>Ferrocarriles Argentinos</span>
+    </a>
     <nav>
       <a href="#intro">Inicio</a>
       <a href="#historia">Historia</a>
@@ -26,7 +30,6 @@
       <a href="#modelos">Modelos</a>
       <a href="#aportes">Aportes</a>
       <a href="#curiosidades">Curiosidades</a>
-      
       <a href="#quiz">Quiz</a>
     </nav>
   </header>
@@ -36,18 +39,17 @@
     <div class="hero-card reveal">
       <div class="hero-inner">
         <figure class="hero-figure">
-          <!-- Agrega tu imagen en assets/ensamble-ferroviario.jpg -->
+          <!-- Poné tu imagen en descarga.jpg -->
           <img src="descarga.jpg" alt="Nudo ferroviario histórico" class="hero-img" />
           <figcaption class="tiny muted">Nudo ferroviario — conexiones principales</figcaption>
         </figure>
         <div class="hero-copy">
           <h1>Sistema Ferroviario de Argentina</h1>
           <p>
-            De <strong>La Porteña 1857</strong> a la nacionalización de <strong>1948</strong>, 
-            los ciclos de expansión, cierres y reactivaciones historia, protagonistas y hitos
+            De <strong>La Porteña (1857)</strong> a la nacionalización de <strong>1948</strong>,
+            los ciclos de expansión, cierres y reactivaciones: historia, protagonistas y hitos
             de una red que conectó puertos, ciudades y economías regionales.
           </p>
-          
         </div>
       </div>
     </div>
@@ -80,18 +82,14 @@
     </div>
     <div class="grid reach-grid">
       <article class="card reveal">
-        <h3>Extensión pico histórico</h3>
-        <p><strong>~47.000–48.000 km</strong> mediados del siglo 20. La red llegó a abarcar buena parte del territorio, integrando economías regionales con puertos como <em>Buenos Aires</em>, <em>Rosario</em> y <em>Bahía Blanca</em>.</p>
+        <h3>Extensión (pico histórico)</h3>
+        <p><strong>~47.000–48.000 km</strong> (mediados del siglo XX). La red llegó a abarcar buena parte del territorio, integrando economías regionales con puertos como <em>Buenos Aires</em>, <em>Rosario</em> y <em>Bahía Blanca</em>.</p>
       </article>
       <article class="card reveal">
         <h3>Líneas Nacionalizadas (1948)</h3>
         <ul class="chips">
-          <li>Mitre</li>
-          <li>Sarmiento</li>
-          <li>Roca</li>
-          <li>San Martín</li>
-          <li>Belgrano</li>
-          <li>Urquiza</li>
+          <li>Mitre</li><li>Sarmiento</li><li>Roca</li>
+          <li>San Martín</li><li>Belgrano</li><li>Urquiza</li>
         </ul>
         <p class="muted">Bautizadas con próceres; integraron redes de trocha ancha, media y angosta.</p>
       </article>
@@ -111,69 +109,66 @@
     </div>
   </section>
 
-  <!-- MODELOS ECONÓMICOS -->
- <!-- MODELOS ECONÓMICOS -->
-<section id="modelos" class="section">
-  <div class="section-head">
-    <h2>Modelos económicos de Argentina y el ferrocarril</h2>
-  </div>
+  <!-- MODELOS ECONÓMICOS (tono narrativo) -->
+  <section id="modelos" class="section">
+    <div class="section-head">
+      <h2>Modelos económicos de Argentina y el ferrocarril</h2>
+    </div>
+    <div class="models-grid">
+      <article class="card">
+        <h3>1) Modelo agroexportador (c. 1880–1930)</h3>
+        <p>
+          En los años del agroexportador, la red ferroviaria se tendió como un abanico que corría hacia los puertos.
+          El capital británico y su modo de gestión marcaron el pulso: las vías nacían en la Pampa Húmeda y
+          desembocaban en Buenos Aires, Rosario o Bahía Blanca, para que granos y carnes llegaran al mundo con
+          menos costo y más prisa. En torno a cada estación surgían comercios, galpones y pueblos que se quedaban
+          para siempre, mientras el paisaje se ordenaba según los tiempos del embarque. El interior se reconocía
+          en la distancia que lo separaba del muelle; la economía nacional, en cambio, se acostumbraba a medir su
+          salud por la rapidez con que un vagón llenaba la bodega de un barco.
+        </p>
+      </article>
 
-  <div class="models-grid">
-    <article class="card">
-      <h3> Modelo agroexportador (c. 1880–1930)</h3>
-      <p>
-        En los años del agroexportador, la red ferroviaria se tendió como un abanico que corría hacia los puertos.
-        El capital británico y su modo de gestión marcaron el pulso: las vías nacían en la Pampa Húmeda y
-        desembocaban en Buenos Aires, Rosario o Bahía Blanca, para que granos y carnes llegaran al mundo con
-        menos costo y más prisa. En torno a cada estación surgían comercios, galpones y pueblos que se quedaban
-        para siempre, mientras el paisaje se ordenaba según los tiempos del embarque. El interior se reconocía
-        en la distancia que lo separaba del muelle; la economía nacional, en cambio, se acostumbraba a medir su
-        salud por la rapidez con que un vagón llenaba la bodega de un barco.
-      </p>
-    </article>
+      <article class="card">
+        <h3>2) ISI – Industrialización por Sustitución de Importaciones (c. 1930–1975)</h3>
+        <p>
+          Con la crisis mundial y el giro hacia el mercado interno, el tren cambió de respiración. Dejó de mirar
+          solo al océano y empezó a latir al ritmo de las fábricas y los suburbios. Cada mañana, miles de
+          trabajadores cruzaban la llanura en coches eléctricos y diésel; cada tarde, la ciudad devolvía su marea
+          humana a los barrios y a los corredores industriales. Los talleres ferroviarios, verdaderas escuelas de
+          oficios, sostuvieron la flota y el orgullo del Estado empresario. El mapa se densificó alrededor del
+          conurbano, de Rosario–Córdoba y de Cuyo: allí el tren era tanto una promesa de llegada puntual como el
+          hilo invisible que unía el salario con la góndola y la pieza fabricada con su destino.
+        </p>
+      </article>
 
-    <article class="card">
-      <h3> ISI – Industrialización por Sustitución de Importaciones (c. 1930–1975)</h3>
-      <p>
-        Con la crisis mundial y el giro hacia el mercado interno, el tren cambió de respiración. Dejó de mirar
-        solo al océano y empezó a latir al ritmo de las fábricas y los suburbios. Cada mañana, miles de
-        trabajadores cruzaban la llanura en coches eléctricos y diésel; cada tarde, la ciudad devolvía su marea
-        humana a los barrios y a los corredores industriales. Los talleres ferroviarios, verdaderas escuelas de
-        oficios, sostuvieron la flota y el orgullo del Estado empresario. El mapa se densificó alrededor del
-        conurbano, de Rosario–Córdoba y de Cuyo: allí el tren era tanto una promesa de llegada puntual como el
-        hilo invisible que unía el salario con la góndola y la pieza fabricada con su destino.
-      </p>
-    </article>
+      <article class="card">
+        <h3>3) Reestructuración y privatizaciones (c. 1976–2001)</h3>
+        <p>
+          Luego llegó el tiempo de la delgadez. Entre desinversión y privatizaciones, las vías largas se
+          hicieron silencio y muchos talleres bajaron sus persianas. La ruta pavimentada y el camión ganaron
+          terreno, mientras en el andén quedaban anécdotas y empleos. En numerosas localidades, el último tren
+          fue también el último rito compartido: el telégrafo apagado, el reloj detenido, el pueblo aprendiendo a
+          vivir sin su horario. La red, antes extensa, se contrajo; donde había continuidad quedó un rosario de
+          interrupciones. Viajar se volvió otra cosa y el territorio empezó a notarlo en los tiempos, en los
+          costos y, sobre todo, en la costumbre de esperar.
+        </p>
+      </article>
 
-    <article class="card">
-      <h3> Reestructuración y privatizaciones (c. 1976–2001)</h3>
-      <p>
-        Luego llegó el tiempo de la delgadez. Entre desinversión y privatizaciones, las vías largas se
-        hicieron silencio y muchos talleres bajaron sus persianas. La ruta pavimentada y el camión ganaron
-        terreno, mientras en el andén quedaban anécdotas y empleos. En numerosas localidades, el último tren
-        fue también el último rito compartido: el telégrafo apagado, el reloj detenido, el pueblo aprendiendo a
-        vivir sin su horario. La red, antes extensa, se contrajo; donde había continuidad quedó un rosario de
-        interrupciones. Viajar se volvió otra cosa y el territorio empezó a notarlo en los tiempos, en los
-        costos y, sobre todo, en la costumbre de esperar.
-      </p>
-    </article>
-
-    <article class="card">
-      <h3> Recuperaciones parciales y proyectos (c. 2003–2023)</h3>
-      <p>
-        En el siglo XXI, el tren volvió a pronunciarse en voz media. Se encendieron servicios regionales,
-        reaparecieron itinerarios y, sobre todo, el área metropolitana recibió material nuevo, señalamiento y
-        estaciones más seguras. La conversación se desplazó hacia la logística: cómo combinar ferrocarril,
-        puertos e hidrovía para que la carga vuelva a elegir la vía; cómo medir puntualidad y confort para que
-        el pasajero recupere la confianza. No es un regreso al pasado, sino una búsqueda de equilibrio: allí
-        donde el riel aún tiene sentido —en distancias medias, en grandes volúmenes, en la ciudad que respira
-        mejor cuando el tren funciona—, el futuro se escribe de a tramos, entre proyectos, pruebas y
-        reanudaciones.
-      </p>
-    </article>
-  </div>
-</section>
-
+      <article class="card">
+        <h3>4) Recuperaciones parciales y proyectos (c. 2003–2023)</h3>
+        <p>
+          En el siglo XXI, el tren volvió a pronunciarse en voz media. Se encendieron servicios regionales,
+          reaparecieron itinerarios y, sobre todo, el área metropolitana recibió material nuevo, señalamiento y
+          estaciones más seguras. La conversación se desplazó hacia la logística: cómo combinar ferrocarril,
+          puertos e hidrovía para que la carga vuelva a elegir la vía; cómo medir puntualidad y confort para que
+          el pasajero recupere la confianza. No es un regreso al pasado, sino una búsqueda de equilibrio: allí
+          donde el riel aún tiene sentido —en distancias medias, en grandes volúmenes, en la ciudad que respira
+          mejor cuando el tren funciona—, el futuro se escribe de a tramos, entre proyectos, pruebas y
+          reanudaciones.
+        </p>
+      </article>
+    </div>
+  </section>
 
   <!-- APORTES Y PROTAGONISTAS -->
   <section id="aportes" class="section">
@@ -190,8 +185,6 @@
     </div>
     <div id="curios-grid" class="grid curios-grid"></div>
   </section>
-
-  
 
   <!-- QUIZ -->
   <section id="quiz" class="section">
@@ -285,6 +278,7 @@
     <p class="FIN">Hecho para aprender sobre nuestra historia ferroviaria.</p>
   </footer>
 
+  <!-- Datos + lógica UI -->
   <script src="main.js"></script>
 </body>
 </html>
