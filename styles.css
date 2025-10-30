@@ -24,7 +24,6 @@ body{
   overflow-x:hidden;
 }
 
-/* Fondo animado */
 .bg{
   position:fixed; inset:0; z-index:-1; overflow:hidden;
   background: radial-gradient(1200px 800px at 80% -10%, rgba(255,238,150,0.6) 0%, transparent 60%);
@@ -45,7 +44,6 @@ body{
 @keyframes cloud{to{transform:translateX(140vw) scale(var(--s,1));}}
 @keyframes pulse{50%{transform:scale(1.03)}}
 
-/* Montañas en el fondo */
 .bg-mountains{
   position:absolute; left:0; right:0; bottom:0;
   height:460px; pointer-events:none; z-index:-1;
@@ -79,7 +77,6 @@ body{
   .bg-mountains::after{ height:160px; right:-2%; width:95%; }
 }
 
-/* Nav */
 .nav{
   position:sticky; top:0; z-index:10; backdrop-filter: blur(6px);
   background:#fff7d9b8; border-bottom:1px solid #0001; display:flex; gap:20px; align-items:center; padding:10px 16px;
@@ -89,14 +86,12 @@ body{
 .nav a{color:var(--ink-2); text-decoration:none; padding:6px 10px; border-radius:10px}
 .nav a:hover{background:#ffffffb8}
 
-/* Secciones */
 .section{max-width:1100px; margin:0 auto; padding:80px 16px}
 .section-head{display:flex; flex-wrap:wrap; align-items:end; gap:16px; justify-content:space-between; margin-bottom:20px}
 .section h2{margin:0 0 6px 0}
 .muted{color:var(--muted)}
 .tiny{font-size:.9rem}
 
-/* Hero */
 .hero{
   display:grid;
   place-items:start center; /* alinea el contenido hacia arriba */
