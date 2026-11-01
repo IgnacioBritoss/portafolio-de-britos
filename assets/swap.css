@@ -1,0 +1,49 @@
+/* Cambio de portafolio desde el logo (compartido por las dos páginas) */
+.brand { position: relative; cursor: pointer; }
+.brand__mark { transition: background-color .3s ease, color .3s ease; }
+.brand__name { transition: color .3s ease; }
+.brand.is-spinning .brand__mark { animation: swap-spin .76s cubic-bezier(.22, 1, .36, 1); }
+.brand.is-spinning .brand__name { animation: swap-name .76s cubic-bezier(.22, 1, .36, 1); }
+@keyframes swap-spin { from { transform: perspective(200px) rotateY(0); } to { transform: perspective(200px) rotateY(360deg); } }
+@keyframes swap-name {
+  40% { opacity: 0; transform: translateY(-8px); }
+  45% { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* cartelito con lo que hace el segundo toque */
+.brand::after {
+  content: attr(data-alt-hint); position: absolute; left: 0; top: calc(100% + 10px);
+  padding: 6px 10px; white-space: nowrap; pointer-events: none;
+  background: var(--swap-hint-bg, #10243A); color: #fff;
+  font: 500 12px/1.2 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0; word-spacing: 0;
+  opacity: 0; transform: translateY(-4px); transition: opacity .3s ease, transform .3s ease;
+}
+.brand.is-alt::after { opacity: 1; transform: none; transition-delay: .5s; }
+
+/* la cortina que sale del logo y tapa la página */
+.swap-cover {
+  position: fixed; inset: 0; z-index: 400; display: grid; place-items: center;
+  background: var(--swap-color);
+  clip-path: circle(0 at var(--swap-x) var(--swap-y));
+  transition: clip-path .8s cubic-bezier(.65, 0, .35, 1);
+  pointer-events: none;
+}
+.swap-cover.is-on { clip-path: circle(150vmax at var(--swap-x) var(--swap-y)); }
+.swap-cover.is-instant { transition: none; }
+.swap-cover span {
+  color: #fff; font: 700 clamp(64px, 12vw, 140px)/1 "Space Grotesk", system-ui, sans-serif;
+  opacity: 0; transform: scale(.8); transition: opacity .3s ease .25s, transform .5s cubic-bezier(.22, 1, .36, 1) .25s;
+}
+.swap-cover.is-on span { opacity: 1; transform: none; }
+.swap-cover.is-instant span { transition: none; }
+/* mientras carga la página de destino, la cortina ya está puesta */
+html.swap-entering body::before {
+  content: ""; position: fixed; inset: 0; z-index: 400; background: var(--swap-self);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand.is-spinning .brand__mark, .brand.is-spinning .brand__name { animation: none; }
+  .swap-cover { display: none; }
+  html.swap-entering body::before { display: none; }
+}

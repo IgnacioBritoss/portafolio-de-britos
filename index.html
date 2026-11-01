@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/swap.css">
   <script>
     // Aplica las preferencias guardadas antes de pintar, así no hay parpadeo
     (function () {
@@ -24,6 +25,12 @@
       } catch (e) {}
       try {
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // si viene del portafolio de Lucas, la cortina reemplaza a la pantalla de carga
+        if (sessionStorage.getItem('swap-in')) {
+          sessionStorage.removeItem('swap-in');
+          sessionStorage.setItem('ib-intro', '1');
+          if (!reduce) d.classList.add('swap-entering');
+        }
         if (!reduce && !sessionStorage.getItem('ib-intro')) d.classList.add('intro');
       } catch (e) {}
     })();
@@ -42,7 +49,11 @@
 
   <header class="topbar">
     <div class="wrap topbar__in">
-      <a class="brand" href="#inicio" aria-label="Ignacio Britos, inicio">
+      <a class="brand" href="#inicio" aria-label="Ignacio Britos, tocá para ver el portafolio de Lucas Park"
+         data-swap="/park" data-swap-file="park.html" data-color="#2F6FAE"
+         data-alt-mark="LP" data-alt-name="Lucas <em>Park</em>" data-alt-color="#E01E2B"
+         data-alt-label="Lucas Park, tocá de nuevo para ir a su portafolio"
+         data-alt-hint="Tocá de nuevo para ver el portafolio de Lucas">
         <span class="brand__mark" aria-hidden="true">IB</span>
         <span class="brand__name">Ignacio Britos</span>
       </a>
@@ -697,5 +708,6 @@
   </footer>
 
   <script src="main.js"></script>
+  <script src="assets/swap.js"></script>
 </body>
 </html>

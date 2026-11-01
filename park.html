@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lucas Park | Punta, número 10</title>
+  <meta name="description" content="Portafolio de Lucas Park, punta y número 10 de ACVA Kyopo.">
+  <meta name="theme-color" content="#111111">
+  <link rel="icon" href="assets/park/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/park/park.css">
+  <link rel="stylesheet" href="assets/swap.css">
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.remove('no-js');
+      try {
+        if (sessionStorage.getItem('swap-in')) {
+          sessionStorage.removeItem('swap-in');
+          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('swap-entering');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#datos">Saltar a mis datos</a>
+
+  <header class="bar">
+    <div class="wrap bar__in">
+      <a class="brand" href="#inicio" aria-label="Lucas Park, tocá para ver el portafolio de Ignacio Britos"
+         data-swap="/" data-swap-file="index.html" data-color="#E01E2B"
+         data-alt-mark="IB" data-alt-name="Ignacio Britos" data-alt-color="#2F6FAE"
+         data-alt-label="Ignacio Britos, tocá de nuevo para ir a su portafolio"
+         data-alt-hint="Tocá de nuevo para ver el portafolio de Ignacio">
+        <span class="brand__mark" aria-hidden="true">LP</span>
+        <span class="brand__name">Lucas <em>Park</em></span>
+      </a>
+      <nav class="nav" aria-label="Secciones">
+        <a href="#datos">Datos</a>
+        <a href="#historia">Historia</a>
+        <a href="#fotos">Fotos</a>
+        <a href="#video">Video</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ INICIO ============ -->
+    <section class="hero wrap" id="inicio">
+      <figure class="polaroid reveal">
+        <span class="tape" aria-hidden="true"></span>
+        <div class="polaroid__photo">
+          <!-- Cuando esté la foto de Lucas jugando (de espalda o de frente),
+               va acá: <img src="assets/park/jugando.jpg" alt="Lucas Park jugando"> -->
+          <svg class="jersey" viewBox="0 0 200 190" role="img" aria-label="Camiseta de Lucas Park con el número 10">
+            <path class="jersey__body" d="M62 14 C74 30 126 30 138 14 L186 40 L170 84 L148 74 L148 178 L52 178 L52 74 L30 84 L14 40 Z"/>
+            <path class="jersey__neck" d="M76 14 C84 28 116 28 124 14"/>
+            <text class="jersey__name" x="100" y="70" text-anchor="middle">PARK</text>
+            <text class="jersey__num" x="100" y="146" text-anchor="middle">10</text>
+          </svg>
+        </div>
+        <figcaption>
+          <b>Yo jugando</b>
+          <span>Punta de ACVA Kyopo</span>
+        </figcaption>
+      </figure>
+
+      <div class="hero__text">
+        <div class="title reveal" data-from="right">
+          <h1>Lucas <span>Park</span></h1>
+          <span class="badge10" aria-label="Número 10">10</span>
+        </div>
+        <p class="hero__lead reveal" data-from="right">Juego de punta con la 10 en ACVA Kyopo. Hace cinco años que juego.</p>
+        <div class="hero__cta reveal" data-from="right">
+          <a class="btn btn--red" href="#video">Ver mis jugadas</a>
+          <a class="btn btn--line" href="#datos">Mis datos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DATOS E HISTORIA ============ -->
+    <section class="section wrap split" id="datos">
+      <div class="note reveal">
+        <span class="pin" aria-hidden="true"></span>
+        <h2>Mis datos</h2>
+        <dl class="note__list">
+          <div><dt>Posición</dt><dd>Punta</dd></div>
+          <div><dt>Número</dt><dd>10</dd></div>
+          <div><dt>Edad</dt><dd>18</dd></div>
+          <div><dt>Club</dt><dd>ACVA Kyopo</dd></div>
+          <div><dt>Juego hace</dt><dd>5 años</dd></div>
+        </dl>
+      </div>
+
+      <div class="kraft torn reveal" id="historia" data-from="right">
+        <h2>Mi historia</h2>
+        <ol class="timeline">
+          <li>
+            <span class="timeline__year">Hace 5 años</span>
+            <p>Empecé a jugar.</p>
+          </li>
+          <li>
+            <!-- COMPLETAR: año en que llegó a ACVA Kyopo -->
+            <span class="timeline__year timeline__year--todo">[año]</span>
+            <p>Llegué a ACVA Kyopo.</p>
+          </li>
+          <li>
+            <!-- COMPLETAR: año y cuál fue su mejor logro -->
+            <span class="timeline__year timeline__year--todo">[año]</span>
+            <p>[Mi mejor logro]</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ FOTOS ============ -->
+    <section class="section wrap" id="fotos">
+      <div class="head reveal">
+        <h2>Fotos de partidos</h2>
+      </div>
+      <div class="film reveal">
+        <!-- Para poner las fotos reales, reemplazá cada <div class="film__ph"> por
+             <img src="assets/park/saque.jpg" alt="Lucas sacando"> (y lo mismo con remate y equipo) -->
+        <figure class="film__frame">
+          <div class="film__ph" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4.5 9.5c5 1 10 1 15 0M4.5 14.5c5-1 10-1 15 0M12 4c-2.5 5-2.5 11 0 16"/></svg>
+          </div>
+          <figcaption>Saque</figcaption>
+        </figure>
+        <figure class="film__frame">
+          <div class="film__ph" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 19l9-9M14 10l3-6 3 3-6 3z"/><circle cx="6" cy="6" r="2.5"/></svg>
+          </div>
+          <figcaption>Remate</figcaption>
+        </figure>
+        <figure class="film__frame">
+          <div class="film__ph" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-4 3-6 6-6s6 2 6 6M12 15c1-1 2.5-1.5 4-1.5 3 0 6 2 6 6.5"/></svg>
+          </div>
+          <figcaption>El equipo</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ VIDEO ============ -->
+    <section class="section wrap" id="video">
+      <div class="video reveal">
+        <!-- Para el video, poné el código de YouTube en data-youtube, por ejemplo:
+             data-youtube="dQw4w9WgXcQ" y aparece el reproductor -->
+        <div class="video__screen" id="video-screen" data-youtube="">
+          <button class="video__play" id="video-play" type="button" aria-label="Reproducir video de mis mejores jugadas">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>
+          </button>
+          <p class="video__soon" id="video-soon" role="status"></p>
+        </div>
+        <div class="video__text">
+          <h2>Video: mis mejores jugadas</h2>
+          <p>Lo mejor de mis partidos, en un solo video.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <div class="foot__me">
+        <span class="badge10 badge10--sm" aria-hidden="true">10</span>
+        <div>
+          <b>Lucas <span>Park</span></b>
+          <span>Punta, ACVA Kyopo</span>
+        </div>
+      </div>
+      <a class="foot__up" href="#inicio" aria-label="Volver arriba">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <script src="assets/park/park.js"></script>
+  <script src="assets/swap.js"></script>
+</body>
+</html>

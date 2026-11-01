@@ -183,6 +183,10 @@ svg[viewBox="0 0 24 24"] {
   background: var(--navy); color: var(--sky); font-size: 14px;
 }
 :root[data-theme="dark"] .brand__mark { background: var(--blue); color: #fff; }
+/* el logo dado vuelta muestra a Lucas Park, con sus colores */
+.brand.is-alt .brand__mark { background: #E01E2B; color: #fff; }
+.brand__name em { font-style: normal; color: #E01E2B; }
+:root { --swap-self: #2F6FAE; }
 .nav { display: flex; gap: 4px; margin-left: auto; }
 .nav a, .mobile-nav a {
   position: relative; padding: 8px 12px; text-decoration: none; font-weight: 500;
