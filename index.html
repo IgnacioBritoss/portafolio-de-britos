@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ignacio Britos | Desarrollador web</title>
+  <meta name="description" content="Portafolio de Ignacio Britos. Hago webs a medida, del diseño al backend, con herramientas automáticas e IA.">
+  <meta name="theme-color" content="#10243A">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // Aplica las preferencias guardadas antes de pintar, así no hay parpadeo
+    (function () {
+      var d = document.documentElement;
+      d.classList.remove('no-js');
+      try {
+        var p = JSON.parse(localStorage.getItem('ib-prefs') || '{}');
+        if (p.theme) d.dataset.theme = p.theme;
+        if (p.reading) d.dataset.reading = 'on';
+        if (p.cvd) d.dataset.cvd = 'on';
+      } catch (e) {}
+      try {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduce && !sessionStorage.getItem('ib-intro')) d.classList.add('intro');
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <!-- Pantalla de carga: solo la primera vez que se entra en la sesión -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader__mark"><span>I</span><span>B</span></div>
+    <div class="loader__bar"><i></i></div>
+    <p class="loader__txt mono">cargando proyectos</p>
+  </div>
+  <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+
+  <a class="skip" href="#proyectos">Saltar a los proyectos</a>
+
+  <header class="topbar">
+    <div class="wrap topbar__in">
+      <a class="brand" href="#inicio" aria-label="Ignacio Britos, inicio">
+        <span class="brand__mark" aria-hidden="true">IB</span>
+        <span class="brand__name">Ignacio Britos</span>
+      </a>
+      <nav class="nav" aria-label="Secciones">
+        <a href="#inicio">Inicio</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#datos">Datos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="a11y" role="group" aria-label="Accesibilidad">
+        <button class="a11y__btn" id="btn-theme" type="button" aria-pressed="false" data-tip="Modo oscuro">
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>
+          <span class="sr">Modo oscuro</span>
+        </button>
+        <button class="a11y__btn" id="btn-reading" type="button" aria-pressed="false" data-tip="Modo lectura">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-9-2v14c4 0 7 .5 9 2 2-1.5 5-2 9-2V4c-4 0-7 .5-9 2z"/><path d="M12 6v14"/></svg>
+          <span class="sr">Modo lectura</span>
+        </button>
+        <button class="a11y__btn a11y__btn--cvd" id="btn-cvd" type="button" aria-pressed="false" data-tip="Colores para daltonismo">
+          <svg class="i-cvd" viewBox="0 0 24 24" aria-hidden="true">
+            <path class="i-cvd__eye" d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/>
+            <path class="i-cvd__r" d="M12 12V6.5a5.5 5.5 0 0 1 4.76 8.25z"/>
+            <path class="i-cvd__g" d="M12 12l4.76 2.75A5.5 5.5 0 0 1 7.24 14.75z"/>
+            <path class="i-cvd__b" d="M12 12L7.24 14.75A5.5 5.5 0 0 1 12 6.5z"/>
+            <circle class="i-cvd__pupil" cx="12" cy="12" r="1.8"/>
+          </svg>
+          <span class="sr">Colores para daltonismo</span>
+        </button>
+      </div>
+      <button class="menu" id="btn-menu" type="button" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span><span class="sr">Menú</span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Secciones" hidden>
+      <a href="#inicio">Inicio</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#datos">Datos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ INICIO ============ -->
+    <section class="hero" id="inicio">
+      <div class="wrap hero__grid">
+        <div class="hero__main">
+          <div class="hero__id">
+            <img class="hero__photo" src="assets/img/ignacio.jpg" alt="Foto de Ignacio Britos" width="300" height="300">
+            <div>
+              <h1 class="hero__name" data-split>Ignacio Britos</h1>
+              <p class="hero__role mono">desarrollador web full stack</p>
+            </div>
+          </div>
+          <p class="hero__lead reveal">Hago webs a medida, del diseño al backend, pensadas para resolver la necesidad concreta de cada persona o negocio. Integro herramientas automáticas e IA para que la experiencia de quien la usa sea más simple y rápida.</p>
+          <ul class="hero__meta reveal">
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>
+              ORT Belgrano / Secundaria, orientación TIC
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+              Buenos Aires, Argentina
+            </li>
+          </ul>
+          <div class="hero__cta reveal">
+            <a class="btn btn--primary" href="#proyectos">Ver proyectos</a>
+            <a class="btn btn--ghost" href="#contacto">Contame tu idea</a>
+          </div>
+        </div>
+
+        <aside class="hero__side">
+          <div class="next reveal" data-from="right">
+            <h2 class="next__title">Lo que viene, Ingeniería Agronómica en la UBA.</h2>
+            <p>Voy a estudiar Ingeniería Agronómica en la Facultad de Agronomía de la Universidad de Buenos Aires.</p>
+          </div>
+          <div class="hero__stats reveal" data-from="right">
+            <div><strong data-count="815">815</strong><span>commits</span></div>
+            <div><strong data-count="51">51</strong><span>repositorios</span></div>
+            <div><strong data-count="149">149</strong><span>días subiendo código</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ PROYECTOS ============ -->
+    <section class="section" id="proyectos">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <h2>Mis proyectos</h2>
+          <p>Me gusta resolver problemas reales, y que se vea. Pasá el mouse, o tocá en el celu, para ver cómo funciona cada uno.</p>
+        </div>
+
+        <div class="featured" data-stagger>
+          <article class="proj proj--feature reveal" style="--c-bg:#1F5FD6;--c-fg:#FFFFFF;--c-ac:#9CC3FF">
+            <a class="proj__media" href="https://freewheel-5a.vercel.app" target="_blank" rel="noopener" aria-label="Abrir FreeWheel en vivo">
+              <div class="proj__cover"><b class="proj__name">FreeWheel</b><i class="proj__line"></i></div>
+              <img class="proj__shot" src="assets/img/freewheel.jpg" alt="" loading="lazy" width="665" height="375">
+              <div class="proj__more">
+                <b>Cómo funciona</b>
+                <p>Una persona publica su auto y otra lo reserva, sin agencia en el medio. Tiene mapa, chat y un servicio de IA propio que ayuda a cargar el auto, revisa las fotos y transcribe notas de voz. Está en 5 idiomas.</p>
+              </div>
+            </a>
+            <span class="note">Full stack + IA, en 5 idiomas</span>
+            <div class="proj__body">
+              <h3>FreeWheel</h3>
+              <p>Alquiler de autos entre particulares: elegís fechas, zona y categoría, y te muestra solo los autos libres.</p>
+              <ul class="tags"><li>React</li><li>Vite</li><li>Leaflet</li><li>IA</li></ul>
+              <div class="proj__links">
+                <a href="https://freewheel-5a.vercel.app" target="_blank" rel="noopener">Ver en vivo</a>
+                <a href="https://github.com/IgnacioBritoss/Fw" target="_blank" rel="noopener">Repositorio</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj proj--feature reveal" style="--c-bg:#111111;--c-fg:#FFFFFF;--c-ac:#F2F2F2">
+            <a class="proj__media" href="https://boletero-wine.vercel.app" target="_blank" rel="noopener" aria-label="Abrir El Boletero en vivo">
+              <div class="proj__cover"><b class="proj__name">El Boletero</b><i class="proj__line"></i></div>
+              <img class="proj__shot" src="assets/img/el-boletero.jpg" alt="" loading="lazy" width="665" height="375">
+              <div class="proj__more">
+                <b>Cómo funciona</b>
+                <p>Entrás con tu cuenta de Google y ves solo tus boletas. Cargás cliente, fecha y total, y el panel suma lo cobrado, lo pendiente y lo vencido. Tiene un backend propio sobre una base de datos PostgreSQL.</p>
+              </div>
+            </a>
+            <span class="note">Para mi hermano, en Australia</span>
+            <div class="proj__body">
+              <h3>El Boletero</h3>
+              <p>Sistema de facturas para el trabajo de mi hermano en Australia: arma las boletas y lleva el estado de cada cobro.</p>
+              <ul class="tags"><li>JavaScript</li><li>PostgreSQL</li><li>Google Sign-In</li></ul>
+              <div class="proj__links">
+                <a href="https://boletero-wine.vercel.app" target="_blank" rel="noopener">Ver en vivo</a>
+                <a href="https://github.com/IgnacioBritoss/boletero" target="_blank" rel="noopener">Repositorio</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj proj--feature reveal" style="--c-bg:#DCEBFF;--c-fg:#10243A;--c-ac:#F2C230">
+            <a class="proj__media" href="https://toromecanico.com.ar" target="_blank" rel="noopener" aria-label="Abrir la web del Toro Mecánico">
+              <div class="proj__cover"><b class="proj__name">Toro Mecánico</b><i class="proj__line"></i></div>
+              <img class="proj__shot" src="assets/img/toro-mecanico.jpg" alt="" loading="lazy" width="665" height="375">
+              <div class="proj__more">
+                <b>Cómo funciona</b>
+                <p>El cliente ve precios y días libres, reserva y paga con Mercado Pago. Le llega un mail automático y mi hermano maneja todo desde un panel con login en dos pasos.</p>
+              </div>
+            </a>
+            <span class="note">Automaticé el alquiler del toro mecánico de mi hermano</span>
+            <div class="proj__body">
+              <h3>Toro Mecánico</h3>
+              <p>Web con dominio propio, reservas, mails automáticos y panel de admin. <a class="link" href="#caso-toro">Ver caso de estudio</a></p>
+              <ul class="tags"><li>Node.js</li><li>PostgreSQL</li><li>Mercado Pago</li></ul>
+              <div class="proj__links">
+                <a href="https://toromecanico.com.ar" target="_blank" rel="noopener">Ver en vivo</a>
+                <span class="proj__private">Repositorio privado</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj proj--feature reveal" style="--c-bg:#FFF1D6;--c-fg:#1E4FBF;--c-ac:#F5A524">
+            <a class="proj__media" href="https://github.com/IgnacioBritoss/tp-quimica" target="_blank" rel="noopener" aria-label="Abrir el repositorio de ALC2OH6OL">
+              <div class="proj__cover"><b class="proj__name">ALC<sub>2</sub>OH<sub>6</sub>OL</b><i class="proj__line"></i></div>
+              <img class="proj__shot" src="assets/img/alc2oh6ol.jpg" alt="" loading="lazy" width="665" height="375">
+              <div class="proj__more">
+                <b>Cómo funciona</b>
+                <p>Usa el modelo de Widmark que vimos en Química: suma el alcohol de cada trago, calcula el pico según peso, sexo y tipo de cuerpo, y cuánto falta para poder manejar según los límites de Argentina.</p>
+              </div>
+            </a>
+            <div class="proj__body">
+              <h3>ALC2OH6OL calculadora</h3>
+              <p>Calculadora para saber cuánto tomaste esta noche: cargás tus datos y tus tragos, y te da una estimación al momento.</p>
+              <ul class="tags"><li>Next.js</li><li>TypeScript</li><li>Framer Motion</li></ul>
+              <div class="proj__links">
+                <a href="https://github.com/IgnacioBritoss/tp-quimica" target="_blank" rel="noopener">Repositorio</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CASO DE ESTUDIO ============ -->
+    <section class="section section--white" id="caso-toro">
+      <div class="wrap">
+        <div class="case">
+          <div class="case__text">
+            <h2 class="reveal">Caso de estudio, Toro Mecánico</h2>
+            <p class="case__sub reveal">Automaticé el alquiler del toro mecánico de mi hermano.</p>
+            <div class="case__facts" data-stagger>
+              <div class="fact fact--dark reveal">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                <strong>&lt; 1 semana</strong><span>de punta a punta</span>
+              </div>
+              <div class="fact reveal">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+                <strong>Solo</strong><span>lo hice yo</span>
+              </div>
+              <div class="fact reveal">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                <strong>2025</strong><span>el año pasado</span>
+              </div>
+            </div>
+            <ol class="steps" data-stagger>
+              <li class="reveal"><h3>El problema</h3><p>Mi hermano alquila un toro mecánico para eventos y necesitaba automatizar el alquiler, que la gente vea precios y disponibilidad y pueda reservar.</p></li>
+              <li class="reveal"><h3>La solución</h3><p>Una web con dominio propio, base de datos para las reservas, pago con Mercado Pago, mails automáticos al cliente y un panel de admin para que él maneje todo.</p></li>
+              <li class="reveal"><h3>El resultado</h3><p>Lo resolví solo y en menos de una semana. El alquiler quedó funcionando sin que él tenga que hacer todo a mano.</p></li>
+            </ol>
+            <a class="btn btn--primary case__cta reveal" href="https://toromecanico.com.ar" target="_blank" rel="noopener">Ver toromecanico.com.ar</a>
+          </div>
+
+          <div class="flow" aria-label="Cómo funciona el sistema">
+            <figure class="flow__web reveal" data-from="right">
+              <div class="browser">
+                <div class="browser__bar"><i></i><i></i><i></i><span class="mono">toromecanico.com.ar</span></div>
+                <img src="assets/img/toro-web.jpg" alt="Web del Toro Mecánico con precios, disponibilidad y reserva" loading="lazy" width="896" height="487">
+              </div>
+              <figcaption>La web, con precios, disponibilidad y reserva</figcaption>
+            </figure>
+
+            <div class="flow__row reveal" data-from="right">
+              <div class="flow__db">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+                <span>Base de datos</span>
+              </div>
+              <div class="flow__mail">
+                <div class="mail__head">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="M3 6l9 7 9-7"/></svg>
+                  Reserva confirmada
+                </div>
+                <p class="mono mail__to">Para: cliente</p>
+                <p>¡Hola! Tu reserva del toro mecánico quedó confirmada.</p>
+                <div class="mail__box"><span>Fecha del evento</span><b>Día / horario / dirección</b><em class="status status--ok">Confirmada</em></div>
+                <span class="note note--sm">Mails automáticos al cliente</span>
+              </div>
+            </div>
+
+            <figure class="admin reveal" data-from="right">
+              <div class="admin__side">
+                <b>Admin</b>
+                <span class="is-active">Reservas</span><span>Calendario</span><span>Precios</span><span>Clientes</span>
+              </div>
+              <div class="admin__main">
+                <b>Reservas</b>
+                <table>
+                  <thead><tr><th>Fecha</th><th>Cliente</th><th>Estado</th></tr></thead>
+                  <tbody>
+                    <tr><td>Sáb</td><td>Cliente 1</td><td><em class="status status--ok">Confirmada</em></td></tr>
+                    <tr><td>Dom</td><td>Cliente 2</td><td><em class="status status--wait">Pendiente</em></td></tr>
+                    <tr><td>Sáb</td><td>Cliente 3</td><td><em class="status status--ok">Confirmada</em></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <figcaption>El panel donde mi hermano maneja todo (esquema)</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FREEWHEEL EN EL CELU ============ -->
+    <section class="section section--navy" id="freewheel-movil">
+      <div class="wrap">
+        <div class="section__head section__head--light reveal">
+          <h2>FreeWheel en el celu, para todos</h2>
+          <p>Versión móvil con modo lectura para dislexia y colores para daltonismo.</p>
+        </div>
+        <div class="mobile">
+          <div class="phones" data-stagger>
+            <div class="phone reveal">
+              <div class="phone__bar"><b>Freewheel</b><i></i></div>
+              <div class="phone__hero" style="background-image:url(assets/img/freewheel-hero.jpg)">
+                <b>¿A dónde vas hoy?</b><span>Elegí las fechas y te mostramos solo los autos libres</span>
+              </div>
+              <div class="phone__form">
+                <label>Dónde<span>Ciudad o barrio</span></label>
+                <label>Fechas<span>¿Cuándo?</span></label>
+                <div class="phone__btn">Buscar autos</div>
+              </div>
+            </div>
+            <div class="phone reveal">
+              <div class="phone__bar"><b>Freewheel</b><i></i></div>
+              <div class="phone__pad">
+                <b class="phone__h">Apariencia</b>
+                <div class="toggle-row"><span>Modo oscuro</span><i class="sw"></i></div>
+                <div class="toggle-row"><span>Modo lectura<small>Tipografía y espaciado pensados para leer más fácil</small></span><i class="sw sw--on"></i></div>
+                <div class="toggle-row"><span>Colores para daltonismo<small>Cambia el verde y el rojo por dos colores que se distinguen</small></span><i class="sw sw--on"></i></div>
+              </div>
+            </div>
+            <div class="phone phone--read reveal">
+              <div class="phone__bar"><b>Freewheel</b><i></i></div>
+              <div class="phone__pad">
+                <b class="phone__h">Modo lectura</b>
+                <p>Así se lee la app con el modo lectura prendido: más aire entre las letras, entre las palabras y entre los renglones.</p>
+              </div>
+            </div>
+            <div class="phone reveal">
+              <div class="phone__bar"><b>Freewheel</b><i></i></div>
+              <div class="phone__pad">
+                <b class="phone__h">Mis reservas</b>
+                <div class="res"><span>Hatchback</span><em class="status status--ok">Verificado</em></div>
+                <div class="res"><span>Sedán</span><em class="status status--bad">Cancelada</em></div>
+                <div class="res"><span>SUV</span><em class="status status--wait">Pendiente</em></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mobile__text reveal" data-from="right">
+            <h3>Modo lectura</h3>
+            <p>Tipografía OpenDyslexic, más aire entre letras, palabras y renglones, y las cursivas pasan a redonda.</p>
+            <h3>Colores para daltonismo</h3>
+            <p>La forma más común confunde el rojo con el verde, justo los colores que la app usa para "verificado" y "cancelada". Los cambié por los de la paleta Okabe e Ito.</p>
+
+            <div class="cvd" aria-label="Comparación de colores">
+              <p class="mono cvd__cap">Así lo ve alguien con daltonismo rojo-verde</p>
+              <div class="cvd__grid">
+                <span></span><span class="mono">Lo ve todo el mundo</span><span class="mono">Con daltonismo</span>
+                <span>Antes</span>
+                <div class="cvd__pair"><i style="background:#1E9E5A">Verificado</i><i style="background:#D62828">Cancelada</i></div>
+                <div class="cvd__pair"><i style="background:#8F8A45">Verificado</i><i style="background:#8A7F2A">Cancelada</i></div>
+                <span>Ahora</span>
+                <div class="cvd__pair"><i style="background:#009E73">Verificado</i><i style="background:#D55E00">Cancelada</i></div>
+                <div class="cvd__pair"><i style="background:#8A8573">Verificado</i><i style="background:#A39114">Cancelada</i></div>
+              </div>
+              <p class="cvd__foot">Y el color nunca es lo único, cada estado va con su texto.</p>
+            </div>
+            <a class="btn btn--sky" href="https://freewheel-5a.vercel.app" target="_blank" rel="noopener">Probalo en tu celu</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MÁS PROYECTOS ============ -->
+    <section class="section" id="mas-proyectos">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <h2>Más proyectos</h2>
+          <p>Juegos, herramientas, hardware y diseño.</p>
+        </div>
+        <div class="more" data-stagger>
+          <article class="proj reveal" style="--c-bg:#0A0F17;--c-fg:#3FD5F5;--c-ac:#F05AA0">
+            <a class="proj__media" href="https://game-it-63r9.onrender.com" target="_blank" rel="noopener" aria-label="Abrir game.it">
+              <div class="proj__cover proj__cover--mono"><b class="proj__name">game.it<span class="caret">_</span></b><i class="proj__line"></i></div>
+              <img class="proj__shot" src="assets/img/game-it.jpg" alt="" loading="lazy" width="1000" height="562">
+              <div class="proj__more">
+                <b>Cómo funciona</b>
+                <p>Más de 70 juegos livianos con estética neón, desafíos nuevos cada día y modo online con un servidor propio.</p>
+              </div>
+            </a>
+            <div class="proj__body">
+              <div class="proj__title"><h3>game.it</h3><span class="badge">Colaborador</span></div>
+              <p>Portal de juegos web estilo Friv o Poki, con estética neón.</p>
+              <ul class="tags"><li>Vite</li><li>three.js</li></ul>
+              <div class="proj__links">
+                <a href="https://game-it-63r9.onrender.com" target="_blank" rel="noopener">Jugar</a>
+                <a href="https://github.com/emitejadaa/game.it" target="_blank" rel="noopener">Repositorio</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj reveal" style="--c-bg:#10243A;--c-fg:#74ACDF;--c-ac:#FFFFFF">
+            <a class="proj__media" href="https://github.com/IgnacioBritoss/editordevideo" target="_blank" rel="noopener" aria-label="Abrir el repositorio del Editor de video">
+              <div class="proj__cover"><b class="proj__name">Editor de video</b><i class="proj__line"></i></div>
+              <div class="proj__shot proj__shot--draw editor" aria-hidden="true">
+                <span class="mono">audio.mp3</span>
+                <div class="editor__wave"></div>
+                <div class="editor__imgs"><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="editor__foot"><b>Generar video</b><span class="mono">00:42 / 01:30</span></div>
+              </div>
+              <div class="proj__more">
+                <b>Cómo funciona</b>
+                <p>Whisper transcribe el audio, se sacan las palabras clave de cada frase, se busca una imagen para cada una y MoviePy arma el video sincronizado.</p>
+              </div>
+            </a>
+            <div class="proj__body">
+              <div class="proj__title"><h3>Editor de video</h3></div>
+              <p>Subís un audio y el editor elige imágenes que acompañan lo que se dice para armar el video.</p>
+              <ul class="tags"><li>Python</li><li>FastAPI</li><li>Whisper</li></ul>
+              <div class="proj__links">
+                <a href="https://github.com/IgnacioBritoss/editordevideo" target="_blank" rel="noopener">Repositorio</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj reveal" style="--c-bg:#151A2E;--c-fg:#C6F432;--c-ac:#6C7CFF">
+            <a class="proj__media" href="https://github.com/IgnacioBritoss/quiniela-britos" target="_blank" rel="noopener" aria-label="Abrir el repositorio de Quiniela PRO">
+              <div class="proj__cover"><b class="proj__name">Quiniela PRO</b><i class="proj__line"></i></div>
+              <img class="proj__shot" src="assets/img/quiniela-pro.jpg" alt="" loading="lazy" width="661" height="378">
+              <div class="proj__more">
+                <b>Cómo funciona</b>
+                <p>Armás la boleta con tus números, simulás el sorteo y ves cuántas veces salió cada número. Podés cambiar el tema de color o pasar a modo claro.</p>
+              </div>
+            </a>
+            <div class="proj__body">
+              <div class="proj__title"><h3>Quiniela PRO</h3></div>
+              <p>Simulador para armar boletas, jugar y ver estadísticas. Con temas de color y modo claro.</p>
+              <ul class="tags"><li>HTML</li><li>CSS</li><li>JS</li></ul>
+              <div class="proj__links">
+                <a href="https://github.com/IgnacioBritoss/quiniela-britos" target="_blank" rel="noopener">Repositorio</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj reveal" style="--c-bg:#C9A36B;--c-fg:#3B2614;--c-ac:#FFFFFF">
+            <div class="proj__media" tabindex="0" aria-label="PetCare, ver cómo funciona">
+              <div class="proj__cover"><b class="proj__name">PetCare</b><i class="proj__line"></i></div>
+              <img class="proj__shot" src="assets/img/petcare.jpg" alt="" loading="lazy" width="661" height="378">
+              <div class="proj__more">
+                <b>Cómo funciona</b>
+                <p>Una API guarda las mascotas, los horarios y los planes de comida. El ESP32 consulta los horarios y activa el dispenser, con la ración calculada según el perro.</p>
+              </div>
+            </div>
+            <div class="proj__body">
+              <div class="proj__title"><h3>PetCare</h3><span class="badge">En equipo</span></div>
+              <p>Alimentador automático para perros con ESP32 y dispenser de comida.</p>
+              <ul class="tags"><li>ESP32</li><li>Express</li><li>PostgreSQL</li></ul>
+              <div class="proj__links">
+                <span class="proj__private">Repositorio privado</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj reveal" style="--c-bg:#2F6FAE;--c-fg:#FFFFFF;--c-ac:#E6B33A">
+            <a class="proj__media" href="https://github.com/IgnacioBritoss/dise-art-tic" target="_blank" rel="noopener" aria-label="Abrir el repositorio de Diseñart">
+              <div class="proj__cover"><b class="proj__name">Diseñart</b><i class="proj__line"></i></div>
+              <div class="proj__shot proj__shot--draw disenart" aria-hidden="true">
+                <div class="disenart__top"><b>Diseñart</b><span>Buzos de egresados</span></div>
+                <div class="disenart__body">
+                  <div class="disenart__swatches"><i style="background:#2F6FAE"></i><i style="background:#10243A"></i><i style="background:#C0392B"></i><i style="background:#2E8B57"></i><i style="background:#E6B33A"></i></div>
+                  <svg class="disenart__hoodie" viewBox="0 0 120 110"><path d="M40 8c4 10 36 10 40 0l24 12 14 40-16 6-6-18v62H24V48l-6 18-16-6L16 20z"/><text x="60" y="58" text-anchor="middle">PROMO</text><text x="60" y="74" text-anchor="middle" class="y">2026</text></svg>
+                  <div class="disenart__actions"><b>Guardar plantilla</b><span>Descargar</span><small>Frente</small><small>Espalda</small><small>Mangas</small></div>
+                </div>
+              </div>
+              <div class="proj__more">
+                <b>Cómo funciona</b>
+                <p>Elegís colores para cada parte del buzo, le ponés el texto de tu promo, guardás la plantilla y la descargás para mandarla al local.</p>
+              </div>
+            </a>
+            <div class="proj__body">
+              <div class="proj__title"><h3>Diseñart</h3><span class="badge">3er año</span></div>
+              <p>Para los locales de buzos de egresados. Diseñás el buzo, guardás la plantilla y la bajás.</p>
+              <div class="proj__links">
+                <a href="https://github.com/IgnacioBritoss/dise-art-tic" target="_blank" rel="noopener">Repositorio</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj reveal" style="--c-bg:#5DA94A;--c-fg:#FFFFFF;--c-ac:#4A2E1A">
+            <a class="proj__media" href="https://github.com/IgnacioBritoss/misterenzo" target="_blank" rel="noopener" aria-label="Abrir el repositorio de Míster, el topo">
+              <div class="proj__cover"><b class="proj__name">Míster, el topo</b><i class="proj__line"></i></div>
+              <img class="proj__shot" src="assets/img/juego-lengua.jpg" alt="" loading="lazy" width="784" height="457">
+              <div class="proj__more">
+                <b>Cómo funciona</b>
+                <p>Basado en Kentukis de Samanta Schweblin. Sos un kentuki topo y en 5 días cumplís tareas, esquivás las trampas de Luca y llegás al cargador antes de quedarte sin batería.</p>
+              </div>
+            </a>
+            <div class="proj__body">
+              <div class="proj__title"><h3>Juego para Lengua</h3><span class="badge">En equipo</span></div>
+              <p>Lo armé para una presentación. Muestra cómo resolver un problema y adaptarse.</p>
+              <ul class="tags"><li>JavaScript</li><li>Canvas</li></ul>
+              <div class="proj__links">
+                <a href="https://github.com/IgnacioBritoss/misterenzo" target="_blank" rel="noopener">Repositorio</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DATOS ============ -->
+    <section class="section section--ink" id="datos">
+      <div class="wrap">
+        <div class="section__head section__head--light reveal">
+          <h2>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10M18 10c0 4-6 3-11 7"/></svg>
+            Mis datos de GitHub
+          </h2>
+          <a class="mono gh-user" href="https://github.com/IgnacioBritoss" target="_blank" rel="noopener">IgnacioBritoss</a>
+        </div>
+
+        <div class="stats" data-stagger>
+          <div class="stat stat--accent reveal"><strong data-count="815">815</strong><span>commits</span></div>
+          <div class="stat reveal"><strong data-count="240" data-prefix="+" data-suffix="k">+240k</strong><span>líneas de código</span></div>
+          <div class="stat reveal"><strong data-count="51">51</strong><span>repositorios</span></div>
+          <div class="stat reveal"><strong data-count="149">149</strong><span>días subiendo código</span></div>
+        </div>
+
+        <div class="charts">
+          <div class="chart reveal">
+            <h3>Lenguajes por líneas</h3>
+            <ul class="bars">
+              <li><span class="ico ico--js">JS</span><span>JavaScript</span><b style="--v:75.9"></b><em class="mono">75,9%</em></li>
+              <li><span class="ico ico--css">{ }</span><span>CSS</span><b style="--v:10.8"></b><em class="mono">10,8%</em></li>
+              <li><span class="ico ico--html">&lt;/&gt;</span><span>HTML</span><b style="--v:7.1"></b><em class="mono">7,1%</em></li>
+              <li><span class="ico ico--ts">TS</span><span>TypeScript</span><b style="--v:3.5"></b><em class="mono">3,5%</em></li>
+              <li><span class="ico ico--cs">C#</span><span>C#</span><b style="--v:2"></b><em class="mono">2,0%</em></li>
+              <li><span class="ico ico--py">Py</span><span>Python</span><b style="--v:0.6"></b><em class="mono">0,6%</em></li>
+            </ul>
+          </div>
+          <div class="chart reveal" data-from="right">
+            <h3>Commits por proyecto</h3>
+            <ul class="bars bars--plain">
+              <li><span>FreeWheel</span><b style="--v:100"></b><em class="mono">333</em></li>
+              <li><span>Toro Mecánico</span><b style="--v:65.2"></b><em class="mono">217</em></li>
+              <li><span>El Boletero</span><b style="--v:14.7"></b><em class="mono">49</em></li>
+              <li><span>TP Front</span><b style="--v:13.8"></b><em class="mono">46</em></li>
+              <li><span>FPS Parkour</span><b style="--v:4.8"></b><em class="mono">16</em></li>
+              <li><span>Editor de video</span><b style="--v:3"></b><em class="mono">10</em></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="activity reveal" id="activity">
+          <h3>Actividad del último año</h3>
+          <div class="activity__grid" id="activity-grid" role="img" aria-label="Commits por día durante el último año"></div>
+          <p class="mono activity__foot" id="activity-foot"></p>
+        </div>
+        <p class="data-note">Datos al 1 de noviembre de 2026, contando mis commits en repositorios públicos y privados. Las líneas son las que agregué en archivos de código, sin dependencias.</p>
+      </div>
+    </section>
+
+    <!-- ============ STACK + MOVIMIENTO ============ -->
+    <section class="section">
+      <div class="wrap duo">
+        <div class="panel reveal">
+          <h2>Lo que uso</h2>
+          <ul class="stack">
+            <li><span class="ico ico--js">JS</span>JavaScript</li>
+            <li><span class="ico ico--ts">TS</span>TypeScript</li>
+            <li><span class="ico ico--html">&lt;/&gt;</span>HTML</li>
+            <li><span class="ico ico--css">{ }</span>CSS</li>
+            <li><span class="ico ico--react">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></svg>
+            </span>React</li>
+            <li><span class="ico ico--py">Py</span>Python</li>
+            <li><span class="ico ico--cs">C#</span>C#</li>
+            <li><span class="ico ico--db">DB</span>SQL</li>
+          </ul>
+          <ul class="tags tags--loose">
+            <li>Vite</li><li>Next.js</li><li>Node.js</li><li>Express</li><li>PostgreSQL</li><li>Supabase</li><li>FastAPI</li><li>Streamlit</li><li>n8n</li><li>Groq</li><li>three.js</li><li>Mercado Pago</li><li>ESP32</li><li>Git</li>
+          </ul>
+        </div>
+        <div class="panel panel--sky reveal" data-from="right">
+          <h2>Que se mueva</h2>
+          <p>Imágenes, transiciones y animaciones suaves en cada proyecto.</p>
+          <div class="motion">
+            <div class="motion__squares" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <svg class="motion__curve" viewBox="0 0 120 90" aria-hidden="true"><path d="M8 82 C 40 82, 44 8, 112 8"/><circle cx="8" cy="82" r="3"/><circle cx="112" cy="8" r="3"/></svg>
+          </div>
+          <div class="motion__labels mono"><span>transform / opacity / clip-path</span><span>ease-out</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section class="section section--white" id="contacto">
+      <div class="wrap contact">
+        <div class="hire reveal">
+          <h2>¿Me contratarías?</h2>
+          <div class="hire__zone" id="hire-zone">
+            <button class="btn hire__yes" id="hire-yes" type="button">Sí</button>
+            <button class="btn hire__no" id="hire-no" type="button">No</button>
+          </div>
+          <p class="hire__msg" id="hire-msg" role="status"></p>
+        </div>
+
+        <div class="idea reveal" id="idea">
+          <h2>¿Tenés una idea?</h2>
+          <p>Contámela y la solucionamos.</p>
+          <form class="form" id="idea-form" action="https://formsubmit.co/britosignacio106@gmail.com" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="Nueva propuesta desde el portafolio">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input class="form__trap" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="form__col">
+              <label for="f-name">Nombre</label>
+              <input id="f-name" name="nombre" type="text" autocomplete="name" required>
+              <label for="f-mail">Tu mail</label>
+              <input id="f-mail" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="form__col">
+              <label for="f-idea">Tu idea</label>
+              <textarea id="f-idea" name="idea" rows="6" placeholder="Quiero una web para..." required></textarea>
+            </div>
+            <div class="form__foot">
+              <button class="btn btn--dark" id="form-send" type="submit">Enviar propuesta</button>
+              <p class="form__msg" id="form-msg" role="status"></p>
+            </div>
+          </form>
+          <p class="mono idea__direct">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="M3 6l9 7 9-7"/></svg>
+            Llega directo a britosignacio106@gmail.com
+          </p>
+        </div>
+
+        <div class="contact__side">
+          <a class="link-card link-card--dark reveal" href="mailto:britosignacio106@gmail.com">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="M3 6l9 7 9-7"/></svg>
+            <strong>britosignacio106<br>@gmail.com</strong>
+            <span>escribime</span>
+          </a>
+          <a class="link-card reveal" href="https://github.com/IgnacioBritoss" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10M18 10c0 4-6 3-11 7"/></svg>
+            <strong>IgnacioBritoss</strong>
+            <span>en GitHub</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__in">
+      <span>Ignacio Britos, Buenos Aires</span>
+      <a href="https://github.com/IgnacioBritoss" target="_blank" rel="noopener">GitHub</a>
+      <a href="#inicio">Volver arriba</a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
