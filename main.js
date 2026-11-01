@@ -3,7 +3,6 @@
 
   var root = document.documentElement;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var canHover = window.matchMedia('(hover: hover)').matches;
 
   /* ---------- Pantalla de carga ---------- */
   // Dura lo que tarda la barra (unos 1,3 s) o lo que tarde en cargar la página,
@@ -181,36 +180,42 @@
   }
 
   /* ---------- Tarjetas de proyectos ---------- */
+  // Primer clic: se va la portada, aparece la captura y abajo cómo funciona.
+  // Segundo clic: entra a la web o al repositorio. Igual en compu y en celu.
   var projs = document.querySelectorAll('.proj');
+  function closeAll(except) {
+    projs.forEach(function (c) { if (c !== except) c.classList.remove('is-open'); });
+  }
   projs.forEach(function (card) {
     var media = card.querySelector('.proj__media');
+    var frame = card.querySelector('.proj__frame');
     // brillo que sigue al mouse
     media.addEventListener('pointermove', function (e) {
-      var r = media.getBoundingClientRect();
-      media.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      media.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      var r = frame.getBoundingClientRect();
+      frame.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      frame.style.setProperty('--my', (e.clientY - r.top) + 'px');
     });
-    // En el celu no hay "pasar el mouse": el primer toque muestra la captura
-    // y cómo funciona, el segundo abre el proyecto.
     media.addEventListener('click', function (e) {
-      if (canHover) return;
-      if (!card.classList.contains('is-open')) {
-        e.preventDefault();
-        projs.forEach(function (c) { c.classList.remove('is-open'); });
-        card.classList.add('is-open');
-      }
+      var isLink = media.tagName === 'A';
+      if (card.classList.contains('is-open') && isLink) return;
+      e.preventDefault();
+      closeAll(card);
+      card.classList.toggle('is-open');
     });
     if (media.tagName !== 'A') {
       media.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          card.classList.toggle('is-open');
+          media.click();
         }
       });
     }
   });
   document.addEventListener('click', function (e) {
-    if (!e.target.closest('.proj')) projs.forEach(function (c) { c.classList.remove('is-open'); });
+    if (!e.target.closest('.proj')) closeAll(null);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAll(null);
   });
 
   /* ---------- Actividad del último año ---------- */
