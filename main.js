@@ -347,7 +347,7 @@
         if (String(data.success) === 'true') {
           form.reset();
           msg.classList.add('is-ok');
-          msg.textContent = '¡Listo! Me llegó tu idea, te respondo a tu mail.';
+          msg.textContent = '¡Listo! Me llegó tu idea, te responderé a tu mail.';
         } else {
           fallback('No se pudo enviar.');
         }
