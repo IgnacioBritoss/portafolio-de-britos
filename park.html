@@ -53,6 +53,7 @@
       <nav class="nav" aria-label="Secciones">
         <a href="#inicio">Inicio</a>
         <a href="#datos">Datos</a>
+        <a href="#cancha">Cancha</a>
         <a href="#fotos">Fotos</a>
         <a href="#video">Video</a>
       </nav>
@@ -63,14 +64,15 @@
     <nav class="mobile-nav" id="mobile-nav" aria-label="Secciones" hidden>
       <a href="#inicio">Inicio</a>
       <a href="#datos">Datos</a>
+        <a href="#cancha">Cancha</a>
       <a href="#fotos">Fotos</a>
       <a href="#video">Video</a>
     </nav>
   </header>
 
   <main>
-    <!-- ============ INICIO: 01 jugador, 02 número, 03 datos ============ -->
-    <section class="board wrap" id="inicio" aria-label="Inicio">
+    <!-- ============ INICIO: 01 jugador y 02 número ============ -->
+    <section class="hero wrap" id="inicio" aria-label="Inicio">
       <article class="tile tile--player">
         <div class="player__text">
           <p class="lbl"><span>01</span> Jugador</p>
@@ -87,22 +89,9 @@
           </div>
         </div>
 
-        <figure class="player__photo ph">
-          <!-- COMPLETAR, foto principal (jugando, de espalda o de frente, no la cara de cerca):
-               guardala como assets/park/jugando.jpg y reemplazá el <svg class="jersey"> y el
-               <figcaption class="ph__cap"> por:
-               <img src="assets/park/jugando.jpg" alt="Lucas Park jugando con la 10"> -->
+        <figure class="player__photo">
           <span class="tape">Yo jugando</span>
-          <svg class="jersey" viewBox="0 0 200 190" aria-hidden="true">
-            <path class="jersey__body" d="M62 14 C74 30 126 30 138 14 L186 40 L170 84 L148 74 L148 178 L52 178 L52 74 L30 84 L14 40 Z"/>
-            <path class="jersey__neck" d="M76 14 C84 28 116 28 124 14"/>
-            <text class="jersey__name" x="100" y="70" text-anchor="middle">PARK</text>
-            <text class="jersey__num" x="100" y="146" text-anchor="middle">10</text>
-          </svg>
-          <figcaption class="ph__cap">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg>
-            [Foto: yo jugando, de espalda o de frente]
-          </figcaption>
+          <img src="assets/park/jugando.jpg" alt="Lucas Park en la cancha, con la camiseta 10" width="640" height="840">
         </figure>
       </article>
 
@@ -116,169 +105,124 @@
           <i class="num__line" aria-hidden="true"></i>
         </div>
       </article>
-
-      <article class="tile tile--stats reveal" data-from="right">
-        <p class="lbl"><span>03</span> Datos</p>
-        <div class="stats">
-          <div><strong data-count="18">18</strong><span>Años de edad</span></div>
-          <div><strong data-count="5">5</strong><span>Años jugando</span></div>
-        </div>
-      </article>
     </section>
 
-    <!-- ============ DATOS: 04 posición, 05 frase, 06 club, 07 foto, 08 historia ============ -->
-    <section class="board board--b wrap" id="datos" aria-labelledby="datos-t">
-      <h2 class="sr" id="datos-t">Mis datos</h2>
-
-      <article class="tile tile--pos reveal" id="posicion">
-        <h3 class="lbl"><span>04</span> Posición</h3>
-        <div class="pos">
-          <div class="pos__text">
-            <b class="pos__name">Punta</b>
-            <span>Ataque por zona 4</span>
-          </div>
-          <svg class="court" viewBox="0 0 200 210" role="img" aria-label="Cancha de vóley: juego de punta y ataco por la zona 4, adelante a la izquierda">
-            <g class="court__lines">
-              <path class="court__far" d="M20 0 V40 M180 0 V40"/>
-              <rect x="20" y="40" width="160" height="160"/>
-              <path d="M20 93.3 H180"/>
-            </g>
-            <path class="court__net" d="M8 40 H192"/>
-            <g class="court__mates">
-              <circle cx="100" cy="66.7" r="3.5"/>
-              <circle cx="153.3" cy="66.7" r="3.5"/>
-              <circle cx="46.7" cy="146.7" r="3.5"/>
-              <circle cx="100" cy="146.7" r="3.5"/>
-              <circle cx="153.3" cy="146.7" r="3.5"/>
-            </g>
-            <path class="court__set" pathLength="1" d="M150 60 Q100 -4 54 50"/>
-            <path class="court__hit" pathLength="1" d="M50 54 L150 11"/>
-            <circle class="court__ring" cx="152" cy="10" r="6"/>
-            <circle class="court__ball" cx="152" cy="10" r="4.5"/>
-            <g class="court__me">
-              <circle cx="46.7" cy="66.7" r="12"/>
-              <text x="46.7" y="72" text-anchor="middle">10</text>
-            </g>
-          </svg>
-        </div>
-      </article>
-
-      <div class="stack">
-        <article class="tile tile--quote reveal">
-          <h3 class="lbl"><span>05</span> Frase</h3>
-          <blockquote class="quote">
-            <span class="quote__mark" aria-hidden="true">“</span>
-            <!-- COMPLETAR: tu frase, corta -->
-            <p class="todo">[Tu frase va acá]</p>
-          </blockquote>
+    <!-- ============ MIS DATOS: 03 edad, 04 años jugando, 05 club ============ -->
+    <section class="section wrap" id="datos">
+      <div class="section__head reveal">
+        <h2>Mis datos</h2>
+        <p>Lo principal, rápido.</p>
+      </div>
+      <div class="facts">
+        <article class="tile tile--fact reveal">
+          <h3 class="lbl"><span>03</span> Edad</h3>
+          <p class="fact"><strong data-count="18">18</strong><span>años</span></p>
         </article>
-
+        <article class="tile tile--fact reveal">
+          <h3 class="lbl"><span>04</span> Juego hace</h3>
+          <p class="fact"><strong data-count="5">5</strong><span>años</span></p>
+        </article>
         <article class="tile tile--club reveal">
-          <div>
-            <h3 class="lbl"><span>06</span> Club</h3>
+          <h3 class="lbl"><span>05</span> Club</h3>
+          <div class="club__row">
             <b class="club__name">ACVA Kyopo</b>
+            <img class="club__crest" src="assets/park/escudo.png" alt="Escudo de ACVA Kyopo" width="302" height="320">
           </div>
-          <!-- COMPLETAR, escudo: guardalo como assets/park/escudo.png y reemplazá el <span> por
-               <img src="assets/park/escudo.png" alt="Escudo de ACVA Kyopo"> -->
-          <div class="club__crest"><span>[escudo]</span></div>
         </article>
       </div>
+    </section>
 
-      <article class="tile tile--detail ph reveal">
-        <h3 class="lbl"><span>07</span> Foto</h3>
-        <!-- COMPLETAR, foto de detalle: guardala como assets/park/detalle.jpg y reemplazá el
-             <svg class="ball"> y el <p class="ph__cap"> por
-             <img src="assets/park/detalle.jpg" alt="Mis zapatillas y la pelota"> -->
-        <svg class="ball" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M11.1 7.1a16.55 16.55 0 0 1 10.9 4"/><path d="M12 12a12.6 12.6 0 0 1-8.7 5"/><path d="M16.8 13.6a16.55 16.55 0 0 1-9 7.5"/><path d="M20.7 17a12.8 12.8 0 0 0-8.7-5 13.3 13.3 0 0 1 0-10"/><path d="M6.3 3.8a16.55 16.55 0 0 0 1.9 11.5"/></svg>
-        <p class="ph__cap">[Detalle: zapatillas, pelota o camiseta]</p>
-      </article>
+    <!-- ============ EN LA CANCHA: 06 rotación, 07 mi juego ============ -->
+    <section class="section wrap" id="cancha">
+      <div class="section__head reveal">
+        <h2>En la cancha</h2>
+        <p>Juego de punta. Tocá «Rotar» y mirá por dónde paso.</p>
+      </div>
+      <div class="field">
+        <article class="tile tile--rot reveal">
+          <div class="rot__top">
+            <h3 class="lbl"><span>06</span> Rotación</h3>
+            <p class="rot__status" id="rot-status" aria-live="polite">Zona 4 · Adelante: mi zona de ataque</p>
+          </div>
+          <svg class="court" id="court" viewBox="0 0 300 296" role="img" aria-label="Cancha de vóley vista desde arriba, con la red arriba. Lucas, con la 10, está en la zona 4, adelante a la izquierda.">
+            <g class="court__lines">
+              <path class="court__far" d="M30 0 V40 M270 0 V40"/>
+              <rect x="30" y="40" width="240" height="240"/>
+              <path d="M30 120 H270"/>
+              <path class="court__zones" d="M110 40 V280 M190 40 V280"/>
+            </g>
+            <g class="court__nums" aria-hidden="true">
+              <text x="40" y="62">4</text><text x="120" y="62">3</text><text x="200" y="62">2</text>
+              <text x="40" y="142">5</text><text x="120" y="142">6</text><text x="200" y="142">1</text>
+            </g>
+            <path class="court__net" d="M14 40 H286"/>
+            <path class="court__hit" pathLength="1" d="M80 64 L232 10"/>
+            <circle class="court__ring" cx="236" cy="8" r="8"/>
+            <circle class="court__ball" cx="236" cy="8" r="6"/>
+            <g class="pl" data-i="1" transform="translate(150 80)"><circle r="11"/></g>
+            <g class="pl" data-i="2" transform="translate(230 80)"><circle r="11"/></g>
+            <g class="pl" data-i="3" transform="translate(230 200)"><circle r="11"/></g>
+            <g class="pl" data-i="4" transform="translate(150 200)"><circle r="11"/></g>
+            <g class="pl" data-i="5" transform="translate(70 200)"><circle r="11"/></g>
+            <g class="pl pl--me" data-i="0" transform="translate(70 80)"><g class="pl__in"><circle r="20"/><text y="7" text-anchor="middle">10</text></g></g>
+          </svg>
+          <div class="rot__foot">
+            <ol class="rot__steps" id="rot-steps" aria-hidden="true"><li class="is-on"></li><li></li><li></li><li></li><li></li><li></li></ol>
+            <button class="btn btn--red rot__btn" id="rot-btn" type="button">
+              Rotar
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-14 5.3L4 15"/><path d="M4 20v-5h5"/></svg>
+            </button>
+          </div>
+        </article>
 
-      <article class="tile tile--story reveal" id="historia">
-        <h3 class="lbl"><span>08</span> Historia</h3>
-        <ol class="story">
-          <li><span>Hace 5 años</span><b>Empecé a jugar vóley</b></li>
-          <!-- COMPLETAR: año en que llegaste a ACVA Kyopo -->
-          <li><span class="todo">[Año]</span><b>Llegué a ACVA Kyopo</b></li>
-          <!-- COMPLETAR: año y tu mejor logro -->
-          <li><span class="todo">[Año]</span><b class="todo">[Mi mejor logro]</b></li>
-        </ol>
-      </article>
+        <article class="tile tile--game reveal" data-from="right">
+          <h3 class="lbl"><span>07</span> Mi juego</h3>
+          <p class="game__pos"><b>Punta</b><span>Ataque por zona 4</span></p>
+          <ul class="game" id="game">
+            <li data-zones="4 3 2"><b>Ataque</b><span>Remato desde adelante, sobre todo por zona 4.</span></li>
+            <li data-zones="4 3 2"><b>Bloqueo</b><span>Salto en la red para frenar al rival.</span></li>
+            <li data-zones="4 3 2 6 5"><b>Recepción</b><span>Recibo el saque del otro equipo.</span></li>
+            <li data-zones="1 6 5"><b>Defensa</b><span>Levanto los remates desde atrás.</span></li>
+            <li data-zones="1"><b>Saque</b><span>Saco cuando paso por la zona 1.</span></li>
+          </ul>
+        </article>
+      </div>
     </section>
 
     <!-- ============ FOTOS DE PARTIDOS ============ -->
     <section class="section wrap" id="fotos">
       <div class="section__head reveal">
         <h2>Fotos de partidos</h2>
-        <p>Con un clic ves la foto.</p>
+        <p>Saque, remate y el equipo.</p>
       </div>
-      <!-- Para poner las fotos reales, guardalas en assets/park/ y reemplazá cada
-           <div class="shot__photo ph">…</div> por
-           <img class="shot__photo" src="assets/park/saque.jpg" alt="Lucas sacando">
-           (y lo mismo con remate.jpg y equipo.jpg) -->
       <div class="shots">
-        <article class="shot reveal" style="--c-bg:#141518;--c-fg:#F5F5F2;--c-ac:#DC1125">
-          <button class="shot__media" type="button" aria-pressed="false" aria-label="Saque, ver la foto">
-            <div class="shot__frame">
-              <div class="shot__cover">
-                <span class="lbl"><span>09</span> Partido</span>
-                <div><h3 class="shot__name">Saque</h3><i class="shot__line"></i></div>
-                <svg class="shot__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5.5" r="3"/><path d="M12 12v9M8 16l4-4 4 4"/></svg>
-              </div>
-              <div class="shot__photo ph">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg>
-                <span class="ph__cap">[Foto: saque]</span>
-              </div>
-            </div>
-          </button>
-        </article>
-
-        <article class="shot reveal" style="--c-bg:#DC1125;--c-fg:#FFFFFF;--c-ac:#0B0C0E">
-          <button class="shot__media" type="button" aria-pressed="false" aria-label="Remate, ver la foto">
-            <div class="shot__frame">
-              <div class="shot__cover">
-                <span class="lbl"><span>10</span> Partido</span>
-                <div><h3 class="shot__name">Remate</h3><i class="shot__line"></i></div>
-                <svg class="shot__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="17" cy="16" r="4"/><path d="M3 4l9 8M7.5 3l3 2.7M3 8.5l2.7 2.4"/></svg>
-              </div>
-              <div class="shot__photo ph">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg>
-                <span class="ph__cap">[Foto: remate]</span>
-              </div>
-            </div>
-          </button>
-        </article>
-
-        <article class="shot reveal" style="--c-bg:#F5F5F2;--c-fg:#0B0C0E;--c-ac:#DC1125">
-          <button class="shot__media" type="button" aria-pressed="false" aria-label="El equipo, ver la foto">
-            <div class="shot__frame">
-              <div class="shot__cover">
-                <span class="lbl"><span>11</span> Partido</span>
-                <div><h3 class="shot__name">El equipo</h3><i class="shot__line"></i></div>
-                <svg class="shot__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-4 3-6 6-6s6 2 6 6M12 15c1-1 2.5-1.5 4-1.5 3 0 6 2 6 6.5"/></svg>
-              </div>
-              <div class="shot__photo ph">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg>
-                <span class="ph__cap">[Foto: el equipo]</span>
-              </div>
-            </div>
-          </button>
-        </article>
+        <figure class="shot reveal">
+          <div class="shot__img"><img src="assets/park/saque.jpg" alt="Lucas con la pelota, preparándose para sacar" width="840" height="630" loading="lazy"></div>
+          <figcaption class="lbl"><span>08</span> Saque</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <div class="shot__img"><img src="assets/park/remate.jpg" alt="Lucas saltando para rematar en la red" width="960" height="720" loading="lazy"></div>
+          <figcaption class="lbl"><span>09</span> Remate</figcaption>
+        </figure>
+        <figure class="shot shot--wide reveal">
+          <div class="shot__img"><img src="assets/park/equipo.jpg" alt="El equipo de ACVA Kyopo" width="1600" height="849" loading="lazy"></div>
+          <figcaption class="lbl"><span>10</span> El equipo</figcaption>
+        </figure>
       </div>
     </section>
 
     <!-- ============ VIDEO ============ -->
     <section class="section wrap" id="video">
       <div class="video reveal">
-        <!-- Para el video, poné el código de YouTube en data-youtube, por ejemplo:
-             data-youtube="dQw4w9WgXcQ" y aparece el reproductor -->
-        <div class="video__screen" id="video-screen" data-youtube="">
+        <div class="video__screen" id="video-screen">
+          <video class="video__clip" id="video-clip" src="assets/park/pelotazo.mp4" poster="assets/park/pelotazo.jpg"
+                 width="848" height="384" preload="metadata" playsinline></video>
           <button class="video__play" id="video-play" type="button" aria-label="Reproducir video de mis mejores jugadas">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>
           </button>
-          <p class="video__soon" id="video-soon" role="status"></p>
         </div>
         <div class="video__text">
-          <p class="lbl"><span>12</span> Video</p>
+          <p class="lbl"><span>11</span> Video</p>
           <div>
             <h2>Mis mejores jugadas</h2>
             <p>Lo mejor de mis partidos, en un solo video.</p>

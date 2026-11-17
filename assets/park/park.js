@@ -61,21 +61,60 @@
     requestAnimationFrame(tick);
   }
 
-  /* ---------- La jugada en la cancha ---------- */
-  var court = document.querySelector('.court');
-  var lastPlay = 0;
+  /* ---------- Rotación en la cancha ---------- */
+  // Las zonas en el orden en que se rota (en el sentido del reloj):
+  // el que está en la 4 pasa a la 3, de la 3 a la 2, de la 2 a la 1, etc.
+  var SEQ = [4, 3, 2, 1, 6, 5];
+  var SPOT = { 4: [70, 80], 3: [150, 80], 2: [230, 80], 5: [70, 200], 6: [150, 200], 1: [230, 200] };
+  var SAY = {
+    4: 'Zona 4 · Adelante: mi zona de ataque',
+    3: 'Zona 3 · Adelante, al medio',
+    2: 'Zona 2 · Adelante, a la derecha',
+    1: 'Zona 1 · Atrás: me toca sacar',
+    6: 'Zona 6 · Atrás, al medio',
+    5: 'Zona 5 · Atrás, a la izquierda'
+  };
+  var court = document.getElementById('court');
+  var players = court ? court.querySelectorAll('.pl') : [];
+  var steps = document.querySelectorAll('#rot-steps li');
+  var status = document.getElementById('rot-status');
+  var game = document.getElementById('game');
+  var turn = 0;
+
+  // salto y remate, solo cuando estoy en la zona 4
   function play() {
-    if (!court || reduce || performance.now() - lastPlay < 2200) return;
-    lastPlay = performance.now();
+    if (!court || reduce || SEQ[turn] !== 4) return;
     court.classList.remove('is-play');
     void court.getBoundingClientRect();
     court.classList.add('is-play');
   }
-  // se repite al pasar por encima o tocar la tarjeta
-  var posTile = document.getElementById('posicion');
-  if (posTile) {
-    posTile.addEventListener('mouseenter', play);
-    posTile.addEventListener('click', play);
+
+  function place() {
+    players.forEach(function (p) {
+      var xy = SPOT[SEQ[(Number(p.dataset.i) + turn) % 6]];
+      p.removeAttribute('transform');
+      p.style.transform = 'translate(' + xy[0] + 'px, ' + xy[1] + 'px)';
+    });
+    var zone = SEQ[turn];
+    status.textContent = SAY[zone];
+    steps.forEach(function (s, i) { s.classList.toggle('is-on', i === turn); });
+    game.querySelectorAll('li').forEach(function (li) {
+      li.classList.toggle('is-on', li.dataset.zones.split(' ').indexOf(String(zone)) > -1);
+    });
+    court.classList.toggle('is-z4', zone === 4);
+    court.setAttribute('aria-label', 'Cancha de vóley vista desde arriba, con la red arriba. Lucas, con la 10, está en la zona ' +
+      zone + (zone === 4 || zone === 3 || zone === 2 ? ', adelante.' : ', atrás.'));
+  }
+
+  if (court) {
+    game.classList.add('is-live');
+    court.classList.add('is-z4');
+    place();
+    document.getElementById('rot-btn').addEventListener('click', function () {
+      turn = (turn + 1) % 6;
+      place();
+      if (turn === 0) setTimeout(play, 650);
+    });
   }
 
   /* ---------- Entradas al scrollear ---------- */
@@ -130,55 +169,26 @@
         });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['inicio', 'datos', 'fotos', 'video'].forEach(function (id) {
+    ['inicio', 'datos', 'cancha', 'fotos', 'video'].forEach(function (id) {
       var s = document.getElementById(id);
       if (s) navIo.observe(s);
     });
   }
 
-  /* ---------- Fotos de partidos ---------- */
-  // Un clic: se va la portada y aparece la foto. Otro clic: se cierra.
-  var shots = document.querySelectorAll('.shot');
-  function setShot(card, open) {
-    card.classList.toggle('is-open', open);
-    card.querySelector('.shot__media').setAttribute('aria-pressed', String(open));
-  }
-  shots.forEach(function (card) {
-    var btn = card.querySelector('.shot__media');
-    var frame = card.querySelector('.shot__frame');
-    // brillo que sigue al mouse
-    btn.addEventListener('pointermove', function (e) {
-      var r = frame.getBoundingClientRect();
-      frame.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      frame.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    });
-    btn.addEventListener('click', function () {
-      var open = !card.classList.contains('is-open');
-      shots.forEach(function (c) { if (c !== card) setShot(c, false); });
-      setShot(card, open);
-    });
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') shots.forEach(function (c) { setShot(c, false); });
-  });
-
   /* ---------- Video ---------- */
-  // Con el código de YouTube en data-youtube, el botón carga el reproductor.
+  // El botón rojo lo reproduce con sonido. Después quedan los controles
+  // del navegador, y al terminar vuelve el botón para verlo de nuevo.
   var screen = document.getElementById('video-screen');
+  var clip = document.getElementById('video-clip');
   var playBtn = document.getElementById('video-play');
-  var soon = document.getElementById('video-soon');
   playBtn.addEventListener('click', function () {
-    var id = screen.dataset.youtube;
-    if (!id) {
-      soon.textContent = 'El video está en camino';
-      return;
-    }
-    var frame = document.createElement('iframe');
-    frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0';
-    frame.title = 'Mis mejores jugadas';
-    frame.allow = 'autoplay; encrypted-media; picture-in-picture';
-    frame.allowFullscreen = true;
-    screen.innerHTML = '';
-    screen.appendChild(frame);
+    clip.controls = true;
+    clip.play();
+  });
+  clip.addEventListener('play', function () { screen.classList.add('is-playing'); });
+  clip.addEventListener('ended', function () {
+    screen.classList.remove('is-playing');
+    clip.controls = false;
+    playBtn.focus();
   });
 })();
