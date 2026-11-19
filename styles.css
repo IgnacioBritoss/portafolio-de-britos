@@ -155,7 +155,10 @@ svg[viewBox="0 0 24 24"] {
 @keyframes bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 .loader__txt { font-size: 12px; color: #A3B6CA; letter-spacing: .08em; }
 
-/* barra de progreso de lectura */
+/* barra de progreso de lectura (la misma de la landing de FreeWheel):
+   ocupa todo el ancho, fija arriba, y el relleno arranca en scaleX(0).
+   main.js le cambia el scaleX según cuánto bajaste. transform-origin:
+   left hace que crezca desde la izquierda hacia la derecha. */
 .progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 60; pointer-events: none; }
 .progress i { display: block; height: 100%; background: var(--sky); transform: scaleX(0); transform-origin: left; }
 

@@ -180,10 +180,22 @@
     revealEls.forEach(function (el) { el.classList.add('is-in'); });
   }
 
-  /* ---------- Barra de progreso y sección actual ---------- */
-  // La barra de arriba se llena con transform: scaleX (de 0 a 1) según
-  // cuánto bajaste. Con "ticking" se calcula como mucho una vez por cuadro,
-  // aunque el evento scroll se dispare muchas veces por segundo.
+  /* ==========================================================
+     BARRA DE PROGRESO AL SCROLLEAR (la misma de la landing de FreeWheel)
+     La línea celeste de arriba avanza de izquierda a derecha mientras
+     bajás. Es la misma técnica que usé en la landing de FreeWheel
+     (allá está en src/hooks/useScroll.js y src/components/Nav.jsx):
+     1. Calculo cuánto bajaste, de 0 a 1:
+        scrollY / (alto total de la página - alto de la pantalla).
+     2. Ese número va a transform: scaleX(...). Escalar no obliga al
+        navegador a recalcular el diseño; cambiar el ancho sí.
+     3. El evento scroll se dispara muchísimas veces por segundo. El
+        listener no calcula nada: marca "ticking" y pide un
+        requestAnimationFrame, así el cálculo corre como mucho una vez
+        por cuadro ("rAF throttling").
+     4. { passive: true } le promete al navegador que no voy a frenar el
+        scroll, así no espera a mi código y en el celu no se siente pegajoso.
+     ========================================================== */
   var bar = document.getElementById('progress');
   var ticking = false;
   function onScroll() {
@@ -196,7 +208,9 @@
     });
   }
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  onScroll(); // la dibujo una vez al cargar, por si la página abre scrolleada
+
+  // marca en el menú la sección que se está viendo
 
   var navLinks = document.querySelectorAll('.nav a');
   if ('IntersectionObserver' in window) {
