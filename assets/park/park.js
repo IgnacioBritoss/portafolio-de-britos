@@ -169,7 +169,7 @@
         });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['inicio', 'datos', 'cancha', 'fotos', 'video'].forEach(function (id) {
+    ['inicio', 'datos', 'logros', 'cancha', 'fotos', 'video'].forEach(function (id) {
       var s = document.getElementById(id);
       if (s) navIo.observe(s);
     });

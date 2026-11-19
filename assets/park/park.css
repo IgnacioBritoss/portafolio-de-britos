@@ -207,6 +207,51 @@ svg[viewBox="0 0 24 24"] {
 .club__name { display: block; font: 400 clamp(36px, 3.6vw, 48px)/.95 var(--head); text-transform: uppercase; }
 .club__crest { display: block; flex-shrink: 0; width: 88px; height: auto; mix-blend-mode: multiply; }
 
+/* ---------- Logros ---------- */
+.wins { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 12px; }
+/* resumen en rojo, como la tarjeta del 10 */
+.tile--sum { display: flex; flex-direction: column; gap: 24px; background: var(--red); border-color: var(--red); color: #fff; }
+.tile--sum:hover { border-color: var(--red); }
+.tile--sum .lbl, .tile--sum .lbl > span { color: #fff; }
+.sum { display: grid; flex: 1; margin: 0; padding: 0; list-style: none; }
+.sum li { display: flex; align-items: baseline; gap: 14px; padding: 18px 0; border-top: 1px solid rgba(255, 255, 255, .3); }
+.sum li:last-child { padding-bottom: 0; }
+.sum strong { min-width: 1.1em; font: 400 76px/.8 var(--head); }
+.sum span { font: 500 12px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+
+.cups { margin: 18px 0 0; padding: 0; list-style: none; }
+.cup {
+  display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: center; gap: 8px 18px;
+  padding: 14px 0; border-top: 1px solid var(--line-2);
+}
+.cup:last-child { padding-bottom: 0; }
+.cup__year { font: 500 12px/1 var(--mono); letter-spacing: .06em; color: var(--muted); }
+.cup__name { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0; }
+.cup__name b { font: 400 24px/1.05 var(--head); text-transform: uppercase; letter-spacing: .01em; }
+.mvp {
+  padding: 4px 8px; border: 1px solid var(--red-text); color: var(--red-text);
+  font: 700 11px/1 var(--mono); font-style: normal; text-transform: uppercase; letter-spacing: .06em;
+}
+.cup__res { display: flex; align-items: center; gap: 10px; font: 500 13px/1 var(--mono); letter-spacing: .02em; color: var(--muted); white-space: nowrap; }
+/* medalla: 1° en rojo, 2° en blanco, 3° solo el borde */
+.medal {
+  display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%;
+  font: 400 15px/1 var(--head); font-style: normal; border: 2px solid var(--line-2); color: var(--text);
+}
+.cup--1 .medal { background: var(--red); border-color: var(--red); color: #fff; }
+.cup--2 .medal { background: var(--paper); border-color: var(--paper); color: var(--bg); }
+.cup--1 .cup__res { color: var(--text); }
+/* los torneos entran uno detrás del otro */
+.tile--cups.sc-in .cup { opacity: 0; transform: translateY(10px); }
+.tile--cups.sc-visible .cup { opacity: 1; transform: none; transition: opacity .5s var(--salida), transform .5s var(--salida); }
+.tile--cups.sc-visible .cup:nth-child(1) { transition-delay: calc(var(--retraso, 0ms) + 220ms); }
+.tile--cups.sc-visible .cup:nth-child(2) { transition-delay: calc(var(--retraso, 0ms) + 290ms); }
+.tile--cups.sc-visible .cup:nth-child(3) { transition-delay: calc(var(--retraso, 0ms) + 360ms); }
+.tile--cups.sc-visible .cup:nth-child(4) { transition-delay: calc(var(--retraso, 0ms) + 430ms); }
+.tile--cups.sc-visible .cup:nth-child(5) { transition-delay: calc(var(--retraso, 0ms) + 500ms); }
+.tile--cups.sc-visible .cup:nth-child(6) { transition-delay: calc(var(--retraso, 0ms) + 570ms); }
+.tile--cups.sc-visible .cup:nth-child(7) { transition-delay: calc(var(--retraso, 0ms) + 640ms); }
+
 /* ---------- En la cancha ---------- */
 .field { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 12px; }
 .tile--rot { display: flex; flex-direction: column; gap: 24px; }
@@ -350,7 +395,9 @@ svg[viewBox="0 0 24 24"] {
   .tile--player, .tile--num { grid-column: span 12; }
   .tile--player { min-height: 480px; }
   .tile--num { min-height: 260px; }
-  .field, .video { grid-template-columns: 1fr; }
+  .field, .video, .wins { grid-template-columns: 1fr; }
+  .sum { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .sum li { flex-direction: column; gap: 10px; padding: 16px 0 0; }
 }
 @media (max-width: 720px) {
   .nav { display: none; }
@@ -366,6 +413,13 @@ svg[viewBox="0 0 24 24"] {
   .field, .shots { gap: 10px; }
   .shots { grid-template-columns: 1fr 1fr; }
   .shot--wide { grid-column: 1 / -1; }
+  .sum strong { font-size: 60px; }
+  .sum span { font-size: 11px; }
+  .cup { grid-template-columns: 1fr auto; grid-template-areas: "year res" "name name"; padding: 14px 0; }
+  .cup__year { grid-area: year; }
+  .cup__res { grid-area: res; }
+  .cup__name { grid-area: name; }
+  .cup__name b { font-size: 22px; }
   .rot__foot { flex-wrap: wrap; }
   .section { padding-top: 88px; }
   .video__text { padding: 22px 20px; }
