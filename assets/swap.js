@@ -2,6 +2,18 @@
    Cambio de portafolio desde el logo (lo usan las dos páginas)
    Primer toque: el cuadradito gira 360° y muestra al otro.
    Segundo toque: una cortina sale del logo y lleva a la otra página.
+
+   Cómo funciona:
+   - Los datos del otro portafolio (letras, nombre, color y dirección)
+     están en atributos data-* del logo en el HTML.
+   - El giro es una animación de CSS (swap.css); el texto se cambia a
+     mitad del giro, cuando el cuadradito está de canto y no se ve.
+   - La cortina es un círculo con clip-path que crece desde el centro
+     del logo hasta tapar la pantalla. Recién ahí cambio de página.
+   - Antes de irme guardo "swap-in" en sessionStorage. La otra página
+     lo lee al cargar y arranca tapada, para que la cortina se abra
+     sobre su logo y el cambio se vea continuo.
+   - En Vercel, /park abre park.html gracias a cleanUrls (vercel.json).
    ========================================================== */
 (function () {
   'use strict';

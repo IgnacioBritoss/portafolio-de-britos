@@ -4,6 +4,15 @@
    Bordes rectos en todo, nada redondeado.
    Movimiento: solo transform, opacity y clip-path, con ease-out
    (el mismo criterio que FreeWheel).
+
+   Reglas de movimiento traídas de FreeWheel:
+   1. Solo se animan transform, opacity y clip-path. Esas tres las mueve
+      la placa de video sin recalcular el diseño de la página; animar
+      width, height, top o margin la obliga a rehacerlo en cada cuadro.
+   2. Una sola curva para todo, --salida: arranca rápido y frena suave.
+      Nunca ease-in en la interfaz: retrasa justo lo que el ojo ya mira.
+   3. Las clases de entrada las pone el JS (ver "Entradas al scrollear").
+   4. Con prefers-reduced-motion no se anima nada.
    ========================================================== */
 
 :root {
@@ -31,7 +40,8 @@
   --font: "Space Grotesk", system-ui, sans-serif;
   --font-head: "Space Grotesk", system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
-  /* arranca fuerte y frena largo */
+  /* arranca fuerte y frena largo: la misma curva que FreeWheel
+     (allá se llama --fw-salida). La usan todas las transiciones. */
   --salida: cubic-bezier(.22, 1, .36, 1);
   --wrap: 1200px;
   --tracking: normal;
@@ -261,7 +271,9 @@ svg[viewBox="0 0 24 24"] {
 .hero__meta svg { color: var(--accent); }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; }
 
-/* el nombre entra letra por letra */
+/* el nombre entra letra por letra: cada letra está en una caja con
+   overflow hidden y sube desde abajo. El retraso es su número (--i, lo
+   pone main.js) por 35 ms, más lo que dura la pantalla de carga (--start). */
 .split-word { display: inline-block; white-space: nowrap; }
 .split-ch { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
 .split-ch > span { display: inline-block; }
@@ -295,7 +307,16 @@ svg[viewBox="0 0 24 24"] {
 .gh-user { margin-left: auto; color: var(--sky); text-decoration: none; }
 .gh-user:hover { text-decoration: underline; }
 
-/* ---------- Proyectos ---------- */
+/* ==========================================================
+   TARJETAS DE PROYECTOS
+   Estructura de cada tarjeta (ver index.html):
+   .proj > .proj__media (link) > .proj__frame (portada + captura)
+                               > .proj__more (texto "Cómo funciona")
+   Cada tarjeta trae sus colores en variables desde el HTML:
+   --c-bg (fondo), --c-fg (letra) y --c-ac (detalle). Así un solo CSS
+   sirve para todos los proyectos.
+   El JS solo agrega o saca la clase .is-open; todo lo visual está acá.
+   ========================================================== */
 .featured { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px 28px; }
 .more { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 
@@ -353,7 +374,11 @@ svg[viewBox="0 0 24 24"] {
 }
 .proj__media:hover .proj__frame::after { opacity: 1; }
 
-/* abierto: se va la portada, aparece la captura y abajo se despliega cómo funciona */
+/* abierto (.is-open, la pone main.js en el primer clic):
+   - la portada se recorta hacia arriba con clip-path,
+   - la captura pasa de un zoom leve (1.08) a su tamaño normal,
+   - "Cómo funciona" se despliega: la fila de grilla pasa de 0fr a 1fr,
+     que es la forma de animar un alto sin saber cuánto mide el texto. */
 .proj.is-open .proj__cover { clip-path: inset(0 0 100% 0); }
 .proj.is-open .proj__name { transform: translateY(-24px); }
 .proj.is-open .proj__shot { transform: scale(1); }
@@ -392,21 +417,14 @@ svg[viewBox="0 0 24 24"] {
   padding: 3px 8px; border: 1px solid var(--line); color: var(--accent-text);
 }
 
-/* notas tipo cinta, como en el moodboard */
+/* notas: un cuadrito celeste recto, encajado en la esquina de arriba a
+   la derecha, por dentro de la tarjeta (sin cinta ni inclinación) */
 .note {
-  position: absolute; z-index: 5; top: -14px; right: 16px; max-width: 70%;
+  position: absolute; z-index: 5; top: 0; right: 0; max-width: 70%;
   background: var(--sky); color: var(--navy); padding: 8px 14px;
   font-size: 14px; line-height: 1.3; font-weight: 500;
-  transform: rotate(1.5deg);
-  box-shadow: 0 6px 14px -8px rgba(16, 36, 58, .5);
-  transition: transform .45s var(--salida);
 }
-.note::before {
-  content: ""; position: absolute; top: -7px; left: 50%; width: 46px; height: 14px;
-  margin-left: -23px; background: rgba(214, 232, 247, .75);
-}
-.proj:hover .note, .proj.is-open .note { transform: rotate(-1deg) translateY(-3px); }
-.note--sm { font-size: 13px; top: -16px; right: -10px; }
+.note--sm { font-size: 13px; }
 
 /* ilustraciones hechas con CSS para proyectos sin captura */
 .editor { background: #0A0F17; color: #fff; display: flex; flex-direction: column; gap: 10px; font-size: 13px; }
@@ -625,6 +643,9 @@ svg[viewBox="0 0 24 24"] {
 .hire__zone { position: relative; height: 120px; margin-top: 18px; }
 .hire__yes { position: absolute; left: 0; top: 30px; min-width: 140px; min-height: 56px; font-size: 1.3rem; background: var(--sky); color: var(--navy); }
 .hire__yes:hover { background: var(--blue); color: #fff; }
+/* el "No" está posicionado absoluto dentro de .hire__zone: main.js le
+   cambia left y top a un lugar al azar, y esta transición hace que se
+   deslice en vez de aparecer de golpe */
 .hire__no {
   position: absolute; left: min(260px, calc(100% - 90px)); top: 30px; min-width: 90px; background: var(--surface); border-color: var(--text);
   transition: left .45s var(--salida), top .45s var(--salida), transform .3s var(--salida);
@@ -674,7 +695,11 @@ svg[viewBox="0 0 24 24"] {
 .sign .firma-svg { width: min(250px, 72%); }
 .sign p { font-size: 12px; color: var(--muted); }
 /* se escribe trazo por trazo, como en vivo: cada trazo espera su turno
-   escondido y se dibuja a la velocidad que le corresponde por su largo */
+   escondido y se dibuja a la velocidad que le corresponde por su largo.
+   Cada <path> tiene pathLength="1", así su largo vale 1 sin importar el
+   tamaño real. Con stroke-dasharray y stroke-dashoffset en 1 el trazo
+   está oculto; al pasar el offset a 0 se "dibuja". --d (cuándo empieza)
+   y --t (cuánto dura) vienen escritos en cada path del HTML. */
 .sc-in .firma-svg--draw path { stroke-dasharray: 1 2; stroke-dashoffset: 1; opacity: 0; }
 .sc-visible .firma-svg--draw path {
   stroke-dashoffset: 0; opacity: 1;
@@ -711,8 +736,15 @@ svg[viewBox="0 0 24 24"] {
 .gh-mark { width: 30px; height: 30px; fill: currentColor; }
 .link-card .gh-mark { color: var(--accent); }
 
-/* ---------- Entradas al scrollear ----------
-   Las clases las pone el JS: si no corre, todo se ve igual que siempre. */
+/* ==========================================================
+   ENTRADAS AL SCROLLEAR (sistema traído de FreeWheel)
+   Las clases las pone el JS: si no corre, todo se ve igual que siempre.
+   - .sc-in: estado inicial, invisible y un poco corrido.
+   - .sc-visible: dispara la animación "entra" con la curva --salida.
+   - --retraso: escalonado de 55 ms entre hermanos (lo calcula main.js).
+   - backwards: la animación manda solo antes de empezar, así el
+     escalonado espera invisible y al terminar suelta el control.
+   ========================================================== */
 .sc-in { opacity: 0; transform: var(--desde, translateY(24px)); }
 .sc-in[data-from="right"] { --desde: translateX(28px); }
 .sc-visible {
@@ -721,6 +753,7 @@ svg[viewBox="0 0 24 24"] {
 }
 @keyframes entra { from { opacity: 0; transform: var(--desde, translateY(24px)); } to { opacity: 1; transform: none; } }
 
+/* quien pidió menos movimiento en su sistema ve todo quieto */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0ms !important; }
@@ -774,6 +807,7 @@ svg[viewBox="0 0 24 24"] {
   .bars--plain li > span:first-child { grid-column: 1 / -1; }
   .bars--plain li b { grid-column: 1; grid-row: 2; }
   .hero__stats strong { font-size: 1.6rem; }
-  .note { right: 10px; max-width: 80%; }
+  .note { max-width: 80%; }
+  .flow__mail { padding-top: 48px; } /* deja lugar a la nota de la esquina */
   .motion__labels { flex-direction: column; }
 }

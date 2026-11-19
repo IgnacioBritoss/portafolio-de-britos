@@ -49,6 +49,10 @@
 
   <header class="topbar">
     <div class="wrap topbar__in">
+      <!-- LOGO QUE CAMBIA DE PORTAFOLIO (lo maneja assets/swap.js)
+           Primer toque: el cuadradito gira 360° y muestra "LP Lucas Park".
+           Segundo toque: una cortina roja sale del logo y lleva a /park.
+           Los data-* le dicen al script a dónde ir y qué mostrar del otro lado. -->
       <a class="brand" href="#inicio" aria-label="Ignacio Britos, tocá para ver el portafolio de Lucas Park"
          data-swap="/park" data-swap-file="park.html" data-color="#2F6FAE"
          data-alt-mark="LP" data-alt-name="Lucas <em>Park</em>" data-alt-color="#DC1125"
@@ -147,6 +151,16 @@
           <p>Me gusta resolver problemas reales, y que se vea. Con un clic ves cómo funciona cada uno, con otro entrás.</p>
         </div>
 
+        <!-- TARJETAS DE PROYECTOS
+             - style="--c-bg / --c-fg / --c-ac": los colores propios de cada proyecto
+               (fondo, letra y detalle de la portada). El CSS es el mismo para todas.
+             - .proj__media es un link: el primer clic lo frena main.js y abre la
+               tarjeta; el segundo clic deja que el link se abra.
+             - El href va a la web en vivo si el proyecto está publicado, y si no,
+               al repositorio de GitHub.
+             - target="_blank" abre otra pestaña para no perder el portafolio y
+               rel="noopener" impide que esa pestaña controle la mía.
+             - data-stagger: las tarjetas entran escalonadas (55 ms entre cada una). -->
         <div class="featured" data-stagger>
           <article class="proj proj--feature reveal" style="--c-bg:#1F5FD6;--c-fg:#FFFFFF;--c-ac:#9CC3FF">
             <a class="proj__media" href="https://freewheel-5a.vercel.app" target="_blank" rel="noopener" aria-label="Abrir FreeWheel en vivo">
@@ -156,7 +170,7 @@
               </div>
               <div class="proj__more"><div class="proj__more-in">
                 <b>Cómo funciona</b>
-                <p>Una persona publica su auto y otra lo reserva, sin agencia en el medio. Tiene mapa, chat y un servicio de IA propio que ayuda a cargar el auto, revisa las fotos y transcribe notas de voz. Está en 5 idiomas.</p>
+                <p>FreeWheel es una plataforma digital de alquiler vehicular peer-to-peer que conecta a propietarios y usuarios, permitiendo publicar y alquilar autos de forma simple, rápida y accesible, en un modelo similar a Airbnb. Facilita transacciones confiables mediante verificación de identidad, perfiles verificados, pagos protegidos, contratos digitales, reglas claras de uso y un sistema de reputación y reseñas que promueve la confianza y brinda seguridad a ambas partes durante todo el proceso.</p>
               </div></div>
             </a>
             <span class="note">Full stack + IA, en 5 idiomas</span>
@@ -628,6 +642,8 @@
     <!-- ============ CONTACTO ============ -->
     <section class="section section--white" id="contacto">
       <div class="wrap contact">
+        <!-- ¿ME CONTRATARÍAS?: los dos botones están dentro de .hire__zone, que
+             es el recuadro por donde se puede mover el "No" (lo mueve main.js). -->
         <div class="hire reveal">
           <h2>¿Me contratarías?</h2>
           <div class="hire__zone" id="hire-zone">
@@ -640,6 +656,13 @@
         <div class="idea reveal" id="idea">
           <h2>¿Tenés una idea?</h2>
           <p>Contámela y la solucionamos.</p>
+          <!-- FORMULARIO CON FORMSUBMIT
+               - main.js frena el envío normal y manda los datos con fetch, sin
+                 recargar la página. El action queda como respaldo si el JS no carga.
+               - novalidate: la validación la hago yo en main.js, con mensajes propios.
+               - Los campos que empiezan con _ son opciones de FormSubmit.
+               - _honey es una trampa anti-spam: está escondido, una persona nunca
+                 lo llena, pero los robots completan todo y así se los descarta. -->
           <form class="form" id="idea-form" action="https://formsubmit.co/britosignacio106@gmail.com" method="POST" novalidate>
             <input type="hidden" name="_subject" value="Nueva propuesta desde el portafolio">
             <input type="hidden" name="_template" value="table">

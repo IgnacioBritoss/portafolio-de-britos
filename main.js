@@ -1,7 +1,23 @@
+/* ==========================================================
+   main.js, portafolio de Ignacio Britos
+   Todo el comportamiento de la página, sin librerías ni frameworks.
+   Está envuelto en una función que se ejecuta sola (IIFE) para que
+   ninguna variable quede suelta en el navegador.
+
+   Bloques principales:
+   - Pantalla de carga y nombre letra por letra
+   - Accesibilidad: modo oscuro, modo lectura y daltonismo
+   - Entradas al scrollear (sistema traído de FreeWheel)
+   - Tarjetas de proyectos: un toque abre, dos entran
+   - ¿Me contratarías?: el botón "No" que se escapa
+   - Formulario que manda el mail de verdad (FormSubmit)
+   ========================================================== */
 (function () {
   'use strict';
 
   var root = document.documentElement;
+  // Si la persona tiene activado "reducir movimiento" en su sistema,
+  // la página no anima nada (mismo criterio que en FreeWheel).
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Pantalla de carga ---------- */
@@ -22,6 +38,10 @@
   }
 
   /* ---------- El nombre entra letra por letra ---------- */
+  // Parto el texto del h1 en una caja por letra (<span>) y a cada una le
+  // paso su número en la variable --i. El CSS usa ese número para que cada
+  // letra arranque 35 ms después de la anterior. El h1 conserva el texto
+  // completo en aria-label para los lectores de pantalla.
   var split = document.querySelector('[data-split]');
   if (split && !reduceMotion) {
     var text = split.textContent;
@@ -98,6 +118,9 @@
   });
 
   /* ---------- Contadores ---------- */
+  // Los números (815, 51, 149) suben desde cero cuando aparecen. Uso
+  // requestAnimationFrame, que dibuja al ritmo de la pantalla, y una curva
+  // que frena al final (1 - (1 - t)^4) para que no lleguen de golpe.
   function countUp(el) {
     var target = Number(el.dataset.count);
     var prefix = el.dataset.prefix || '';
@@ -114,9 +137,16 @@
     requestAnimationFrame(tick);
   }
 
-  /* ---------- Entradas al scrollear ---------- */
-  // Escalonado de 55 ms entre hermanos, como en FreeWheel: con más de diez
-  // elementos deja de crecer para que no se sienta como una carga lenta.
+  /* ==========================================================
+     ENTRADAS AL SCROLLEAR (sistema traído de FreeWheel)
+     Es el mismo motor de entradas que hice para FreeWheel:
+     1. JavaScript le pone .sc-in a cada .reveal (queda invisible y corrido).
+        Si el JS no carga, esa clase nunca se pone y todo se ve igual.
+     2. Un IntersectionObserver avisa cuando el bloque entra en pantalla y
+        ahí le agrego .sc-visible, que dispara la animación del CSS.
+     3. Los hermanos entran escalonados: 55 ms cada uno, con tope en 10.
+        Abajo de 30 ms no se nota y arriba de 80 parece una carga lenta.
+     ========================================================== */
   document.querySelectorAll('[data-stagger]').forEach(function (group) {
     Array.prototype.forEach.call(group.querySelectorAll(':scope > .reveal'), function (el, i) {
       el.style.setProperty('--retraso', Math.min(i, 10) * 55 + 'ms');
@@ -133,8 +163,10 @@
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         show(entry.target);
-        io.unobserve(entry.target);
+        io.unobserve(entry.target); // cada bloque se anima una sola vez
       });
+    // threshold 0.12: se dispara cuando se ve un 12% del bloque.
+    // rootMargin -40px: espera a que suba un poco desde el borde de abajo.
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(function (el) {
       el.classList.add('sc-in');
@@ -149,6 +181,9 @@
   }
 
   /* ---------- Barra de progreso y sección actual ---------- */
+  // La barra de arriba se llena con transform: scaleX (de 0 a 1) según
+  // cuánto bajaste. Con "ticking" se calcula como mucho una vez por cuadro,
+  // aunque el evento scroll se dispare muchas veces por segundo.
   var bar = document.getElementById('progress');
   var ticking = false;
   function onScroll() {
@@ -179,9 +214,17 @@
     });
   }
 
-  /* ---------- Tarjetas de proyectos ---------- */
-  // Primer clic: se va la portada, aparece la captura y abajo cómo funciona.
-  // Segundo clic: entra a la web o al repositorio. Igual en compu y en celu.
+  /* ==========================================================
+     TARJETAS DE PROYECTOS: un toque abre, dos entran
+     Toda la parte de arriba de la tarjeta (.proj__media) es un link <a>
+     a la web en vivo o al repositorio (el href está en index.html).
+     - Primer clic: freno el link con preventDefault() y le agrego la
+       clase .is-open a la tarjeta. El CSS hace el resto: la portada se
+       recorta hacia arriba, aparece la captura y baja "Cómo funciona".
+     - Segundo clic: la tarjeta ya tiene .is-open, así que no freno nada
+       y el navegador abre el link normalmente.
+     Funciona igual en compu y en celu, porque no depende del hover.
+     ========================================================== */
   var projs = document.querySelectorAll('.proj');
   function closeAll(except) {
     projs.forEach(function (c) { if (c !== except) c.classList.remove('is-open'); });
@@ -189,7 +232,8 @@
   projs.forEach(function (card) {
     var media = card.querySelector('.proj__media');
     var frame = card.querySelector('.proj__frame');
-    // brillo que sigue al mouse
+    // brillo que sigue al mouse: guardo la posición del puntero en las
+    // variables --mx y --my y el CSS dibuja ahí un degradado suave.
     media.addEventListener('pointermove', function (e) {
       var r = frame.getBoundingClientRect();
       frame.style.setProperty('--mx', (e.clientX - r.left) + 'px');
@@ -197,11 +241,15 @@
     });
     media.addEventListener('click', function (e) {
       var isLink = media.tagName === 'A';
+      // segundo clic: dejo que el link se abra solo
       if (card.classList.contains('is-open') && isLink) return;
+      // primer clic: freno el link, cierro las otras y abro esta
       e.preventDefault();
       closeAll(card);
       card.classList.toggle('is-open');
     });
+    // PetCare no tiene link (repositorio privado): su tarjeta es un <div>,
+    // así que le agrego Enter y Espacio para poder abrirla con teclado.
     if (media.tagName !== 'A') {
       media.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -211,6 +259,7 @@
       });
     }
   });
+  // un clic afuera de cualquier tarjeta, o la tecla Escape, las cierra
   document.addEventListener('click', function (e) {
     if (!e.target.closest('.proj')) closeAll(null);
   });
@@ -220,6 +269,8 @@
 
   /* ---------- Actividad del último año ---------- */
   // Commits por día, sacados de todos mis repos (públicos y privados) al 1/11/2026.
+  // No dependo de una API externa: los conté del historial de cada repo y
+  // armo la grilla acá, una columna por semana, como la de GitHub.
   var ACTIVITY = {
     start: '2025-11-02',
     counts: [0,0,0,0,0,0,2,0,0,0,0,0,1,0,0,4,0,0,0,0,0,0,0,0,0,0,0,6,16,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,6,0,0,0,9,0,0,0,0,0,3,0,0,0,2,0,0,0,0,0,3,3,0,0,4,4,11,8,14,0,7,0,18,4,0,2,0,0,0,0,0,0,1,0,0,2,0,0,0,7,13,3,15,6,10,20,16,0,20,0,0,6,10,4,0,0,0,7,0,0,0,0,0,0,11,0,6,4,0,0,0,1,0,0,0,0,0,0,2,2,13,0,0,1,0,0,0,1,0,0,0,0,0,0,2,0,0,0,2,8,0,4,3,0,1,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,2,3,1,1,0,0,3,1,0,0,0,3,2,1,2,0,0,3,6,25,0,1,0,1,3,21,11,6,3,0,3,0,0,0,0,0,0,0,0,0,0,0,2,0,6,1,0,0,1,1,1,3,5,11,1,0,1,0,0,0,0,0,1,9,0,0,0,26,2,0,0,0,0,0,0,0,1,5,0,0,0,0,0,5,2,0,0,0,0,4,0,0,0,1,3,0,1]
@@ -254,7 +305,16 @@
     foot.textContent = total + ' commits en ' + active + ' días durante el último año';
   }
 
-  /* ---------- ¿Me contratarías? ---------- */
+  /* ==========================================================
+     ¿ME CONTRATARÍAS?: el botón "No" que se escapa
+     - pointerenter detecta cuando el mouse entra al botón (solo mouse).
+       En el celu no hay mouse, así que se escapa al tocarlo (click).
+     - runAway() elige un lugar al azar con Math.random() dentro del
+       recuadro, restando el tamaño del botón para que no se salga.
+     - Si ese lugar pisa el botón "Sí", prueba otro, hasta 20 veces.
+     - El movimiento suave lo da la transición de left/top en el CSS.
+     - Al tercer escape aparece "¡No seas malo! :(".
+     ========================================================== */
   var zone = document.getElementById('hire-zone');
   var yes = document.getElementById('hire-yes');
   var no = document.getElementById('hire-no');
@@ -266,6 +326,7 @@
     var zh = zone.clientHeight;
     var bw = no.offsetWidth;
     var bh = no.offsetHeight;
+    // zona ocupada por el "Sí", con 16 px de margen
     var yesBox = { r: yes.offsetLeft + yes.offsetWidth + 16, b: yes.offsetTop + yes.offsetHeight + 16 };
     var x, y, tries = 0;
     do {
@@ -284,6 +345,8 @@
 
   no.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') runAway(); });
   no.addEventListener('click', function (e) { e.preventDefault(); runAway(); });
+  // "Sí": esconde el "No", baja hasta el formulario y deja el cursor
+  // listo en el campo del nombre.
   yes.addEventListener('click', function () {
     hireMsg.classList.remove('is-sad');
     hireMsg.textContent = '¡Genial! Contame tu idea acá abajo y arrancamos.';
@@ -292,9 +355,17 @@
     setTimeout(function () { document.getElementById('f-name').focus({ preventScroll: true }); }, reduceMotion ? 0 : 600);
   });
 
-  /* ---------- Formulario de ideas ---------- */
-  // Se manda de verdad con FormSubmit: el mail llega a mi casilla sin abrir
-  // el correo de quien escribe.
+  /* ==========================================================
+     FORMULARIO QUE MANDA EL MAIL DE VERDAD (FormSubmit)
+     El portafolio no tiene servidor propio, así que uso FormSubmit:
+     un servicio que recibe los datos y me los reenvía a mi Gmail.
+     1. Valido los campos antes de mandar nada (checkValidity revisa
+        que el mail tenga formato válido).
+     2. Mando los datos con fetch en formato JSON, sin recargar la página.
+     3. Si sale bien muestro el mensaje de listo; si falla, ofrezco un
+        plan B: un link que abre el correo con el mensaje ya escrito.
+     La primera vez, FormSubmit manda un mail para activar la casilla.
+     ========================================================== */
   var form = document.getElementById('idea-form');
   var msg = document.getElementById('form-msg');
   var send = document.getElementById('form-send');
@@ -323,6 +394,7 @@
       return;
     }
 
+    // desactivo el botón para que no se mande dos veces
     send.disabled = true;
     send.textContent = 'Enviando...';
     msg.classList.remove('is-ok');
@@ -335,11 +407,11 @@
         nombre: form.nombre.value.trim(),
         email: form.email.value.trim(),
         idea: form.idea.value.trim(),
-        _replyto: form.email.value.trim(),
-        _subject: 'Nueva propuesta de ' + form.nombre.value.trim(),
-        _template: 'table',
-        _captcha: 'false',
-        _honey: form._honey.value
+        _replyto: form.email.value.trim(),  // "Responder" en Gmail le contesta a quien escribió
+        _subject: 'Nueva propuesta de ' + form.nombre.value.trim(), // asunto del mail
+        _template: 'table',                 // el mail llega ordenado en una tabla
+        _captcha: 'false',                  // sin captcha, el envío es directo
+        _honey: form._honey.value           // trampa anti-spam: si viene lleno, es un robot
       })
     })
       .then(function (r) { return r.json(); })
