@@ -251,6 +251,8 @@ svg[viewBox="0 0 24 24"] {
 .tile--cups.sc-visible .cup:nth-child(5) { transition-delay: calc(var(--retraso, 0ms) + 500ms); }
 .tile--cups.sc-visible .cup:nth-child(6) { transition-delay: calc(var(--retraso, 0ms) + 570ms); }
 .tile--cups.sc-visible .cup:nth-child(7) { transition-delay: calc(var(--retraso, 0ms) + 640ms); }
+.tile--cups.sc-visible .cup:nth-child(8) { transition-delay: calc(var(--retraso, 0ms) + 710ms); }
+.tile--cups.sc-visible .cup:nth-child(9) { transition-delay: calc(var(--retraso, 0ms) + 780ms); }
 
 /* ---------- En la cancha ---------- */
 .field { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 12px; }
