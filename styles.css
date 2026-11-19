@@ -690,7 +690,14 @@ svg[viewBox="0 0 24 24"] {
 .link-card--dark svg { color: var(--sky); }
 .link-card--dark span { color: #A3B6CA; }
 
-/* ---------- Firma ---------- */
+/* ==========================================================
+   FIRMA QUE SE ESCRIBE EN VIVO
+   La firma es un SVG de trazos (no una imagen): cada <path> es un
+   trazo de la firma. Por eso se puede animar como si se escribiera
+   y cambiar de color con el tema (stroke: currentColor).
+   stroke-linecap y stroke-linejoin round le dan la punta redonda de
+   una lapicera.
+   ========================================================== */
 .firma-svg { display: block; width: 100%; height: auto; overflow: visible; }
 .firma-svg path { fill: none; stroke: currentColor; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
 .sign { display: grid; justify-items: start; gap: 6px; padding: 8px 4px 0; color: var(--navy); }
